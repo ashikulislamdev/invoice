@@ -22,7 +22,7 @@
                             <div class="auth-box">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
-                                        <h5 class="text-dark">মোহাম্মদিয়া কম্পিউটার</h5>
+                                        <h5 class="text-dark">Satkania CEC</h5>
                                         <h3 class="text-center txt-primary">Sign In</h3>
                                     </div>
                                 </div>
