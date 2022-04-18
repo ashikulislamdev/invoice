@@ -14,4 +14,7 @@
 		die("Database Connection Filed!");
 	}
 
+
+	// hello database
+
 ?>
