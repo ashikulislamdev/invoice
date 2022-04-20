@@ -18,4 +18,18 @@ CREATE TABLE customers(
     created TIMESTAMP
 )
 
+
+CREATE TABLE products(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	name varchar(255),
+    quantity int(11),
+    supplier_price int(11),
+    sale_price int(11),
+    voucher_no int(11),
+    supplier_id int(11),
+    warranty_days varchar(255),
+    created TIMESTAMP
+)
+
+
 ALTER TABLE `instituteinfo` ADD `instituteAddress` TEXT NOT NULL AFTER `institutePhone`;
