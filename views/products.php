@@ -1,6 +1,8 @@
 <?php
     // Include Supplier API
     include 'api/suppliers.php';
+    // Include Product API
+    include 'api/products.php';
 ?>
 
 <div class="row">
@@ -21,14 +23,15 @@
 					</thead>
 					<tbody>
                         <?php
-                            if(isset($customersData) && (count($customersData) > 0)){
-                                foreach ($customersData as $key => $value) {
-                                    ?>
+                            if(isset($productsData) && (count($productsData) > 0)){
+                                foreach ($productsData as $key => $value) {
+                                    if ($value['quantity'] != 0) {
+                                        ?>
 						<tr>
 							<td><?php echo ++$key; ?></td>
 							<td><?php echo $value['name']; ?></td>
 							<td><?php echo $value['quantity']; ?></td>
-							<td><?php echo $value['created']; ?></td>
+							<td><?php echo  date("jS F, Y", strtotime($value['created'])); ?></td>
 							<td class="action-col">
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
 								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a>
@@ -41,17 +44,42 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Customer Details</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>customer Name: <b><?php echo $value['customer_name']; ?></b></p>
+                                        <p>product Name: <b><?php echo $value['name']; ?></b></p>
                                         <hr>
-                                        <p>customer Phone: <b><?php echo $value['customer_phone']; ?></b></p>
+                                        <p>Quantity: <b><?php echo $value['quantity']; ?></b></p>
                                         <hr>
-                                        <p>Address: <b><?php echo $value['address']; ?></b></p>
+                                        <p>Supplier Price: <b><?php echo $value['supplier_price']; ?> TK</b></p>
+                                        <hr>
+                                        <p>Sale Price: <b><?php echo $value['sale_price']; ?> TK</b></p>
+                                        <hr>
+                                        <p>Voucher No: <b><?php echo $value['voucher_no']; ?></b></p>
+                                        <hr>
+                                        <p>
+                                            Supplier Name:
+                                            <b>
+                                                <?php
+                                                    $supplier_view_id = $value['supplier_id'];
+                                                    if(isset($suppliersData)){
+                                                        foreach ($suppliersData as $supplierView) {
+                                                            if($supplier_view_id == $supplierView['id'] ){
+                                                                echo $supplierView['supplier_name'];
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                ?>
+                                            </b>
+                                        </p>
+                                        <hr>
+                                        <p>Warranty Days: <b><?php echo $value['warranty_days']; ?></b></p>
+                                        <hr>
+                                        <p>Created: <b><?php echo $value['created']; ?></b></p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -62,30 +90,72 @@
 
                         <!-- Edit Modal -->
                         <div class="modal fade" id="edit_modal<?php echo $value['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Update Customer Information</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Update product Information</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form method="post" action="core/customer-edit.php">
+                                    <form method="post" action="core/product-edit.php">
                                         <div class="modal-body">
                                             <div class="row">
-                                                <div class="col-12">
-                                                    <input type="hidden" name="customer_edit_id" value="<?php echo $value['id']; ?>" required readonly>
+                                                <input type="hidden" name="product_edit_id" value="<?php echo $value['id']; ?>" required readonly>
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="customer_name" class="col-form-label">customer Name:</label>
-                                                        <input type="text" class="form-control" name="customer_name" value="<?php echo $value['customer_name']; ?>" placeholder="Enter customer name" required>
+                                                        <label for="name" class="col-form-label">Product Name:</label>
+                                                        <input type="text" class="form-control" name="name" value="<?php echo $value['name']; ?>" placeholder="Product Name" required>
                                                     </div>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="customer_phone" class="col-form-label">customer Phone:</label>
-                                                        <input type="text" class="form-control" name="customer_phone" value="<?php echo $value['customer_phone']; ?>" placeholder="Enter customer phone" required>
+                                                        <label for="quantity" class="col-form-label">Product Quantity:</label>
+                                                        <input type="number" class="form-control" name="quantity" value="<?php echo $value['quantity']; ?>" placeholder="Product Quantity (Number)" required>
                                                     </div>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="address" class="col-form-label">Address:</label>
-                                                        <textarea name="address" style="min-height: 120px;" class="form-control" placeholder="Enter address"><?php echo $value['address']; ?></textarea>
+                                                        <label for="supplier_price" class="col-form-label">Supplier Price:</label>
+                                                        <input type="number" class="form-control" name="supplier_price" value="<?php echo $value['supplier_price']; ?>" placeholder="Product Supplier Price (Number)" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="sale_price" class="col-form-label">Sale Price:</label>
+                                                        <input type="number" class="form-control" name="sale_price" value="<?php echo $value['sale_price']; ?>" placeholder="Product Sale Price (Number)" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="voucher_no" class="col-form-label">Voucher No:</label>
+                                                        <input type="number" class="form-control" name="voucher_no" value="<?php echo $value['voucher_no']; ?>" placeholder="Product Voucher No (Number)" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="supplier_id" class="col-form-label">Supplier:</label>
+                                                        <select name="supplier_id" id="supplier_id" class="form-control" required>
+                                                            <option value="">-- Select Supplier --</option>
+                                                            <?php
+                                                                $supplier_id = $value['supplier_id'];
+                                                                if(isset($suppliersData)){
+                                                                    foreach ($suppliersData as $supplier) {
+                                                                        $supplier_find = null;
+                                                                        if($supplier_id == $supplier['id'] ){
+                                                                            $supplier_find = 'selected';
+                                                                        }
+                                                                        echo "<option value='".$supplier['id']."' ".$supplier_find.">".$supplier['supplier_name']."</option>";
+                                                                    }
+                                                                }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="warranty_days" class="col-form-label">Warranty Days:</label>
+                                                        <input type="text" class="form-control" name="warranty_days" value="<?php echo $value['warranty_days']; ?>" placeholder="Product Voucher No" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,12 +182,15 @@
                                         <h4 class="text-danger pt-2 pb-3">Do you want to delete this record ?</h4>
                                         
                                         <a href="#" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-                                        <a href="core/customer-delete.php?customer_id=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
+                                        <a href="core/product-delete.php?product_id=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <?php
+                                    }else{
+                                        echo "<tr><td colspan='5' class='text-center text-danger'><h5>No Record Found..!</h5></td></tr>";
+                                    }
                                 }
                             }else{
                                 echo "<tr><td colspan='5' class='text-center text-danger'><h5>No Record Found..!</h5></td></tr>";

@@ -21,7 +21,7 @@ CREATE TABLE customers(
 
 CREATE TABLE products(
 	id int AUTO_INCREMENT PRIMARY KEY,
-	name varchar(255),
+	name varchar(255) UNIQUE,
     quantity int(11),
     supplier_price int(11),
     sale_price int(11),
