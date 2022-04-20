@@ -9,3 +9,11 @@ CREATE TABLE suppliers(
     address TEXT,
     created TIMESTAMP
 )
+
+CREATE TABLE customers(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	customer_name varchar(255),
+    customer_phone varchar(255),
+    address TEXT,
+    created TIMESTAMP
+)

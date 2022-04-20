@@ -57,9 +57,6 @@
                                         <div class="row">
                                             <div class="col-12 pb-3 text-center">
                                                 <?php
-                                                
-                                                    // Include Supplier API
-                                                    include 'api/suppliers.php';
 
                                                     if(isset($_GET['action'])){
                                                         $action = trim(htmlentities(addslashes($_GET['action'])));

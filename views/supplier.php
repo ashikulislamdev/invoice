@@ -1,5 +1,9 @@
-<div class="row">
+<?php
+    // Include Supplier API
+    include 'api/suppliers.php';
+?>
 
+<div class="row">
 	<div class="col-md-12 mx-auto">
 		<button class="btn btn-primary my-2 font-weight-bold px-4" style="border-radius: 0px;" data-toggle="modal" data-target="#add_modal"> + Add New</button>
 		<div class="card" style="border-radius: 0px;">

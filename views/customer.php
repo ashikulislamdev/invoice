@@ -1,5 +1,9 @@
-<div class="row">
+<?php
+    // Include Supplier API
+    include 'api/customers.php';
+?>
 
+<div class="row">
 	<div class="col-md-12 mx-auto">
 		<button class="btn btn-primary my-2 font-weight-bold px-4" style="border-radius: 0px;" data-toggle="modal" data-target="#add_modal"> + Add New</button>
 		<div class="card" style="border-radius: 0px;">
@@ -9,22 +13,20 @@
 					<thead>
 						<tr>
 							<th class="text-center">SL No</th>
-							<th class="text-center">Supplier Name</th>
-							<th class="text-center">Supplier Phone</th>
-							<th class="text-center">Shop Name</th>
+							<th class="text-center">Customer Name</th>
+							<th class="text-center">Customer Phone</th>
 							<th class="text-center">Action</th>
 						</tr>
 					</thead>
 					<tbody>
                         <?php
-                            if(isset($suppliersData) && (count($suppliersData) > 0)){
-                                foreach ($suppliersData as $key => $value) {
+                            if(isset($customersData) && (count($customersData) > 0)){
+                                foreach ($customersData as $key => $value) {
                                     ?>
 						<tr>
 							<td><?php echo ++$key; ?></td>
-							<td><?php echo $value['supplier_name']; ?></td>
-							<td><?php echo $value['supplier_phone']; ?></td>
-							<td><?php echo $value['shop_name']; ?></td>
+							<td><?php echo $value['customer_name']; ?></td>
+							<td><?php echo $value['customer_phone']; ?></td>
 							<td class="action-col">
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
 								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a>
@@ -37,17 +39,15 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Supplier Details</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Customer Details</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Supplier Name: <b><?php echo $value['supplier_name']; ?></b></p>
+                                        <p>customer Name: <b><?php echo $value['customer_name']; ?></b></p>
                                         <hr>
-                                        <p>Supplier Phone: <b><?php echo $value['supplier_phone']; ?></b></p>
-                                        <hr>
-                                        <p>Shop Name: <b><?php echo $value['shop_name']; ?></b></p>
+                                        <p>customer Phone: <b><?php echo $value['customer_phone']; ?></b></p>
                                         <hr>
                                         <p>Address: <b><?php echo $value['address']; ?></b></p>
                                     </div>
@@ -63,27 +63,23 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Update Supplier Information</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Update Customer Information</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form method="post" action="core/supplier-edit.php">
+                                    <form method="post" action="core/customer-edit.php">
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <input type="hidden" name="supplier_edit_id" value="<?php echo $value['id']; ?>" required readonly>
+                                                    <input type="hidden" name="customer_edit_id" value="<?php echo $value['id']; ?>" required readonly>
                                                     <div class="form-group">
-                                                        <label for="supplier_name" class="col-form-label">Supplier Name:</label>
-                                                        <input type="text" class="form-control" name="supplier_name" value="<?php echo $value['supplier_name']; ?>" placeholder="Enter supplier name" required>
+                                                        <label for="customer_name" class="col-form-label">customer Name:</label>
+                                                        <input type="text" class="form-control" name="customer_name" value="<?php echo $value['customer_name']; ?>" placeholder="Enter customer name" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="supplier_phone" class="col-form-label">Supplier Phone:</label>
-                                                        <input type="text" class="form-control" name="supplier_phone" value="<?php echo $value['supplier_phone']; ?>" placeholder="Enter supplier phone" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="shop_name" class="col-form-label">Shop Name:</label>
-                                                        <input type="text" class="form-control" name="shop_name" value="<?php echo $value['shop_name']; ?>" placeholder="Enter Shop Name" required>
+                                                        <label for="customer_phone" class="col-form-label">customer Phone:</label>
+                                                        <input type="text" class="form-control" name="customer_phone" value="<?php echo $value['customer_phone']; ?>" placeholder="Enter customer phone" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="address" class="col-form-label">Address:</label>
@@ -114,7 +110,7 @@
                                         <h4 class="text-danger pt-2 pb-3">Do you want to delete this record ?</h4>
                                         
                                         <a href="#" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-                                        <a href="core/supplier-delete.php?supplier_id=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
+                                        <a href="core/customer-delete.php?customer_id=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +118,7 @@
                         <?php
                                 }
                             }else{
-                                echo "<tr><td colspan='5' class='text-center text-danger'><h5>No Data Found..!</h5></td></tr>";
+                                echo "<tr><td colspan='5' class='text-center text-danger'><h5>No Record Found..!</h5></td></tr>";
                             } 
                         ?>
 					</tbody>
@@ -139,26 +135,22 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Supplier</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Customer</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="core/supplier-add.php">
+            <form method="post" action="core/customer-add.php">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="supplier_name" class="col-form-label">Supplier Name:</label>
-                                <input type="text" class="form-control" name="supplier_name" value="" placeholder="Enter supplier name" required>
+                                <label for="customer_name" class="col-form-label">Customer Name:</label>
+                                <input type="text" class="form-control" name="customer_name" value="" placeholder="Enter customer name" required>
                             </div>
                             <div class="form-group">
-                                <label for="supplier_phone" class="col-form-label">Supplier Phone:</label>
-                                <input type="text" class="form-control" name="supplier_phone" placeholder="Enter supplier phone" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="shop_name" class="col-form-label">Shop Name:</label>
-                                <input type="text" class="form-control" name="shop_name" placeholder="Enter Shop Name" required>
+                                <label for="customer_phone" class="col-form-label">customer Phone:</label>
+                                <input type="text" class="form-control" name="customer_phone" placeholder="Enter customer phone" required>
                             </div>
                             <div class="form-group">
                                 <label for="address" class="col-form-label">Address:</label>
