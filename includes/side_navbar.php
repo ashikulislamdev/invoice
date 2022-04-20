@@ -27,6 +27,12 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li class="">
+                                    <a href="supplier.php">
+                                        <span class="pcoded-micon"><i class="fa fa-users"></i><b>S</b></span>
+                                        <span class="pcoded-mtext">Suppliers</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </nav>

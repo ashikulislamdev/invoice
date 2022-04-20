@@ -21,11 +21,6 @@
 ?>
 
   <body>
-	  <div class="fixed-button">
-		<a href="https://codedthemes.com/item/gradient-able-admin-template" target="_blank" class="btn btn-md btn-primary">
-			<i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade To Pro
-		</a>
-	  </div>
        <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="loader-track">
@@ -59,25 +54,22 @@
                                 <div class="page-wrapper">
 
                                     <div class="page-body">
-                                      <div class="row">
-
-                                           <?php
-
-                                                if(isset($views)){
-                                                    if($views == 'dashboard'){
-                                                        include("views/dashboard-view.php");
-                                                    }else if($views == 'profile'){
-                                                        include("views/profile.php");
-                                                    }else if($views == 'money-receipt'){
-                                                        include("views/money-receipt.php");
-                                                    }else if($views == 'money-receipt-view'){
-                                                        include("views/money-receipt-view.php");
-                                                    }
+                                        <?php
+                                        
+                                            if(isset($views)){
+                                                if($views == 'dashboard'){
+                                                    include("views/dashboard-view.php");
+                                                }else if($views == 'profile'){
+                                                    include("views/profile.php");
+                                                }else if($views == 'money-receipt'){
+                                                    include("views/money-receipt.php");
+                                                }else if($views == 'money-receipt-view'){
+                                                    include("views/money-receipt-view.php");
+                                                }else if($views == 'supplier'){
+                                                    include("views/supplier.php");
                                                 }
-                                           
-                                           ?> 
-											                                           
-                                        </div>
+                                            }                                        
+                                        ?>
                                     </div>
                                 </div>
                             </div>

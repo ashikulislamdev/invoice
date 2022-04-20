@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.action-col{
+    max-width: 100px;
+    text-align: center;
+}

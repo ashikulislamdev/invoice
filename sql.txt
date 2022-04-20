@@ -1,0 +1,11 @@
+Date: 4-20-2022
+
+
+CREATE TABLE suppliers(
+	id int AUTO_INCREMENT PRIMARY KEY,
+    supplier_name varchar(255),
+    supplier_phone varchar(255),
+    shop_name varchar(255),
+    address TEXT,
+    created TIMESTAMP
+)
