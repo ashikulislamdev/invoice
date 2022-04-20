@@ -4,6 +4,7 @@
 		$instituteName = htmlentities(addslashes($_POST['instituteName']));
 		$instituteEmail = htmlentities(addslashes($_POST['instituteEmail']));
 		$institutePhone = htmlentities(addslashes($_POST['institutePhone']));
+		$instituteAddress = htmlentities(addslashes($_POST['instituteAddress']));
 		$currentInstituteLogo = htmlentities(addslashes($_POST['currentInstituteLogo']));
 
 		if(!$instituteName == '' && !$instituteEmail == '' && !$institutePhone == ''){
@@ -32,7 +33,7 @@
 				}
 			}
 			
-			$updateSql = "UPDATE instituteinfo SET `instituteName` = '$instituteName', `instituteEmail` = '$instituteEmail', `institutePhone` = '$institutePhone', `instituteLogo` = '$currentInstituteLogo' WHERE `id` = '1'";
+			$updateSql = "UPDATE instituteinfo SET `instituteName` = '$instituteName', `instituteEmail` = '$instituteEmail', `institutePhone` = '$institutePhone', `instituteAddress` = '$instituteAddress', `instituteLogo` = '$currentInstituteLogo' WHERE `id` = '1'";
 
 			// echo $updateSql;die();
 
@@ -92,7 +93,8 @@
 		<div class="card mb-2" id="profile_card">
 			<img src="<?php if(isset($instituteLogo)){echo "images/$instituteLogo";} ?>" style="max-height: 150px; max-width: 150px; margin: auto;">
 			<h4 class="text-center"><?php if(isset($instituteName)){echo $instituteName;} ?></h4>
-			<h6 class="text-center"><?php if(isset($instituteEmail)){echo $instituteEmail;} ?></h6>
+			<h6 class="text-center"><?php if(isset($instituteAddress)){echo $instituteAddress;} ?></h6>
+			<p class="text-center m-0"><?php if(isset($instituteEmail)){echo $instituteEmail;} ?></p>
 			<p class="text-center"><?php if(isset($institutePhone)){echo $institutePhone;} ?></p>
 
 			<div class="row pb-3">
@@ -130,6 +132,10 @@
 					<div class="col-md-12 pt-2">
 						<label><b>Shop Phone :</b></label>
 						<input type="text" placeholder="Shop Phone" name="institutePhone" value="<?php if(isset($institutePhone)){echo $institutePhone;} ?>" class="form-control" required>
+					</div>
+					<div class="col-md-12 pt-2">
+						<label><b>Address :</b></label>
+						<input type="text" placeholder="Enter Address" name="instituteAddress" value="<?php if(isset($instituteAddress)){echo $instituteAddress;} ?>" class="form-control" required>
 					</div>
 					<div class="col-md-12 pt-2">
 						<label><b>Shop Logo :</b></label><br>

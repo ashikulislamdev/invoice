@@ -12,6 +12,7 @@
                     $instituteLogo = $navData['instituteLogo'];
                     $instituteEmail = $navData['instituteEmail'];
                     $institutePhone = $navData['institutePhone'];
+                    $instituteAddress = $navData['instituteAddress'];
                 }
             }
         }

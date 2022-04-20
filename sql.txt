@@ -17,3 +17,5 @@ CREATE TABLE customers(
     address TEXT,
     created TIMESTAMP
 )
+
+ALTER TABLE `instituteinfo` ADD `instituteAddress` TEXT NOT NULL AFTER `institutePhone`;
