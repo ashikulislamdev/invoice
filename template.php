@@ -94,6 +94,8 @@
                                                     include("views/money-receipt-view.php");
                                                 }else if($views == 'supplier'){
                                                     include("views/supplier.php");
+                                                }else if($views == 'customer'){
+                                                    include("views/customer.php");
                                                 }
                                             }                                        
                                         ?>

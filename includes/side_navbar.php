@@ -4,14 +4,14 @@
                             
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="active">
+                                <li class="<?php if($views == "dashboard"){echo 'active';} ?>">
                                     <a href="dashboard.php">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="pcoded-hasmenu">
+                                <li class="pcoded-hasmenu <?php if($views == "money-receipt" || $views == "money-receipt-view"){echo 'active';} ?>">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Accounts</span>
@@ -27,10 +27,16 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="">
+                                <li class="<?php if($views == "supplier"){echo 'active';} ?>">
                                     <a href="supplier.php">
-                                        <span class="pcoded-micon"><i class="fa fa-users"></i><b>S</b></span>
+                                        <span class="pcoded-micon"><i class='bx bx-user-pin text-20'></i><b>S</b></span>
                                         <span class="pcoded-mtext">Suppliers</span>
+                                    </a>
+                                </li>
+                                <li class="<?php if($views == "customer"){echo 'active';} ?>">
+                                    <a href="customer.php">
+                                        <span class="pcoded-micon"><i class="bx bx-user text-20"></i><b>C</b></span>
+                                        <span class="pcoded-mtext">Customers</span>
                                     </a>
                                 </li>
                             </ul>
