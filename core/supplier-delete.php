@@ -10,9 +10,9 @@
         $sqlQuery = mysqli_query($conn, $sql);
 
         if($sqlQuery == TRUE){
-            echo "<script>location.href='../supplier.php?record_deleted';</script>";
+            echo "<script>location.href='../supplier.php?action=record_deleted';</script>";
         }else{
-            echo "<script>location.href='../supplier.php?something_wrong';</script>";
+            echo "<script>location.href='../supplier.php?action=something_wrong';</script>";
         }
         
     }else{

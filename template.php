@@ -54,6 +54,33 @@
                                 <div class="page-wrapper">
 
                                     <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-12 pb-3 text-center">
+                                                <?php
+                                                
+                                                    // Include Supplier API
+                                                    include 'api/suppliers.php';
+
+                                                    if(isset($_GET['action'])){
+                                                        $action = trim(htmlentities(addslashes($_GET['action'])));
+
+                                                        if($action == 'record_added'){
+                                                            echo "<h5 class='text-success'>Record Added Successfully</h5>";
+                                                        }else if($action == 'record_updated'){
+                                                            echo "<h5 class='text-success'>Record Updated Successfully</h5>";
+                                                        }else if($action == 'record_deleted'){
+                                                            echo "<h5 class='text-success'>Record Deleted Successfully</h5>";
+                                                        }else if($action == 'something_wrong'){
+                                                            echo "<h5 class='text-danger'>Oops, Sorry Something Wrong..!</h5>";
+                                                        }else if($action == 'null'){
+                                                            echo "<h5 class='text-danger'>Please fill the mandatory filed.</h5>";
+                                                        }
+                                                    }
+                                                ?>
+                                            </div>
+                                        </div>
+
+
                                         <?php
                                         
                                             if(isset($views)){
