@@ -96,6 +96,8 @@
                                                     include("views/customer.php");
                                                 }else if($views == 'products'){
                                                     include("views/products.php");
+                                                }else if($views == 'loan'){
+                                                    include("views/loan.php");
                                                 }
                                             }                                        
                                         ?>
