@@ -11,6 +11,10 @@
         $note = trim(htmlentities(addslashes($_POST['note'])));
 
         if(!empty($loan_edit_id) && !empty($title) && !empty($amount) && !empty($date)){
+
+            if($amount < 0){ die('you cannot input less than 0 value'); }
+
+            
             $sql = "UPDATE `loan` SET `title` = '$title', `amount` = '$amount', `date` = '$date', `note` = '$note' WHERE `id` = '$loan_edit_id'";
             // die($sql);
             $runSql = mysqli_query($conn, $sql);

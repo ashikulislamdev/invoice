@@ -10,6 +10,9 @@
         $note = trim(htmlentities(addslashes($_POST['note'])));
 
         if(!empty($title) && !empty($amount) && !empty( $date )){
+
+            if($amount < 0){ die('you cannot input less than 0 value'); }
+
             $sql = "INSERT INTO `loan`(`title`, `amount`, `date`, `note`) VALUES ('$title','$amount','$date', '$note')";
             // die($sql);
             $runSql = mysqli_query($conn, $sql);

@@ -35,7 +35,7 @@ CREATE TABLE products(
 ALTER TABLE `instituteinfo` ADD `instituteAddress` TEXT NOT NULL AFTER `institutePhone`;
 
 
-21-04-22
+Date: 21-04-22
 
 //Many times we can see some voucher no with alpabet as like A120 or B0044. That's why i change the voucher_no data type
 ALTER TABLE `products` CHANGE `voucher_no` `voucher_no` VARCHAR(20) NULL DEFAULT NULL;
