@@ -27,7 +27,7 @@
 						<tr>
 							<td><?php echo ++$key; ?></td>
 							<td><?php echo $value['title']; ?></td>
-							<td><?php echo $value['amount']; ?></td>
+							<td><?php echo $value['amount']; ?> TK</td>
 							<td><?php echo $value['date']; ?></td>
 							<td class="action-col">
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
