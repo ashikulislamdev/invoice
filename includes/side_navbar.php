@@ -51,8 +51,14 @@
             </li>
             <li class="<?php if($views == "loan"){echo 'active';} ?>">
                 <a href="loan.php">
-                    <span class="pcoded-micon"><i class="bx bx-money text-20"></i><b>P</b></span>
+                    <span class="pcoded-micon"><i class="bx bx-money text-20"></i><b>L</b></span>
                     <span class="pcoded-mtext">Loan</span>
+                </a>
+            </li>
+            <li class="<?php if($views == "cost"){echo 'active';} ?>">
+                <a href="cost.php">
+                    <span class="pcoded-micon"><i class="bx bx-money text-20"></i><b>C</b></span>
+                    <span class="pcoded-mtext">Cost</span>
                 </a>
             </li>
         </ul>

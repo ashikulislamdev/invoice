@@ -1,13 +1,13 @@
 <?php
     // Include Supplier API
-    include 'api/loan.php';
+    include 'api/cost.php';
 ?>
 
 <div class="row">
 	<div class="col-md-12 mx-auto">
 		<button class="btn btn-primary my-2 font-weight-bold px-4" style="border-radius: 0px;" data-toggle="modal" data-target="#add_modal"> + Add New</button>
 		<div class="card" style="border-radius: 0px;">
-			<h4 class="bg-primary p-3">Loan List</h4>
+			<h4 class="bg-primary p-3">Cost List</h4>
 			<div class="px-2" style="overflow: auto;">
 				<table class="table table-striped table-hover text-center" style="min-width: 400px;">
 					<thead>
@@ -21,8 +21,8 @@
 					</thead>
 					<tbody>
                         <?php
-                            if(isset($loanData) && (count($loanData) > 0)){
-                                foreach ($loanData as $key => $value) {
+                            if(isset($costData) && (count($costData) > 0)){
+                                foreach ($costData as $key => $value) {
                                     ?>
 						<tr>
 							<td><?php echo ++$key; ?></td>
@@ -41,7 +41,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Loan Details</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">cost Details</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
@@ -72,11 +72,11 @@
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form method="post" action="core/loan-edit.php">
+                                    <form method="post" action="core/cost-edit.php">
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <input type="hidden" name="loan_edit_id" value="<?php echo $value['id']; ?>" required readonly>
+                                                    <input type="hidden" name="cost_edit_id" value="<?php echo $value['id']; ?>" required readonly>
                                                     <div class="form-group">
                                                         <label for="title" class="col-form-label">Title:</label>
                                                         <input type="text" class="form-control" name="title" value="<?php echo $value['title']; ?>" placeholder="Enter supplier name" required>
@@ -118,7 +118,7 @@
                                         <h4 class="text-danger pt-2 pb-3">Do you want to delete this record ?</h4>
                                         
                                         <a href="#" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-                                        <a href="core/loan-delete.php?loan_id=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
+                                        <a href="core/cost-delete.php?cost_id=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -143,12 +143,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Loan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Cost</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="core/loan-add.php">
+            <form method="post" action="core/cost-add.php">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
