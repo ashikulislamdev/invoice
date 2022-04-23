@@ -59,3 +59,20 @@ CREATE TABLE `cost` (
     `note` TEXT NOT NULL , 
     PRIMARY KEY (`id`)
 );
+
+
+CREATE TABLE `invoice` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `product_id` int(11) NOT NULL,
+    `product_name` TEXT,
+    `product_suply_price` int(11) NOT NULL,
+    `product_sale_price` int(11) NOT NULL,
+    `customer_id` int(11) NOT NULL,
+    `supplier_id` int(11) NOT NULL,
+    `discount` int(11) NOT NULL,
+    `war_day` int(11) NOT NULL,
+    `total` int(11) NOT NULL,
+    `due` int(11) NOT NULL,
+    `createdOn` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+  );

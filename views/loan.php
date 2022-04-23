@@ -1,5 +1,5 @@
 <?php
-    // Include Supplier API
+    // Include Loan API
     include 'api/loan.php';
 ?>
 

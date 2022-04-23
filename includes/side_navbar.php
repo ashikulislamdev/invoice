@@ -49,11 +49,30 @@
                     <span class="pcoded-mtext">Products</span>
                 </a>
             </li>
-            <li class="<?php if($views == "invoice"){echo 'active';} ?>">
-                <a href="invoice.php">
-                    <span class="pcoded-micon"><i class="bx bxs-report text-20"></i><b>P</b></span>
-                    <span class="pcoded-mtext">Invoice</span>
+            <li class="pcoded-hasmenu <?php if($views == "invoice" || $views == "new-invoice"){echo 'active pcoded-trigger complete';} ?>">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="bx bxs-report text-20"></i></span>
+                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Invoice</span>
+                    <span class="pcoded-mcaret"></span>
                 </a>
+                <ul class="pcoded-submenu">
+                    <li class="<?php if($views == "invoice"){echo 'active';} ?>">
+                        <a href="invoice.php">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Invoices</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="pcoded-submenu">
+                    <li class="<?php if($views == "new-invoice"){echo 'active';} ?>">
+                        <a href="new-invoice.php">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">New Invoice</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="<?php if($views == "loan"){echo 'active';} ?>">
                 <a href="loan.php">

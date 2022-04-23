@@ -98,6 +98,8 @@
                                                     include("views/products.php");
                                                 }elseif ($views=='invoice') {
                                                     include('views/invoice.php');
+                                                }elseif ($views=='new-invoice') {
+                                                    include('views/new-invoice.php');
                                                 }else if($views == 'loan'){
                                                     include("views/loan.php");
                                                 }else if($views == 'cost'){
