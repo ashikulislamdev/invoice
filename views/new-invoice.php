@@ -114,7 +114,7 @@
                                     <td align="center" colspan="2">
                                         <input id="add-invoice" class="btn btn-success" name="add-invoice" value="Submit" tabindex="9" type="submit">
                                         <input id="full_paid_tab" class="btn btn-warning" name="" onclick="full_paid();" value="Full Paid" tabindex="8" type="button">
-                                    </td>                                
+                                    </td>
                                     <td style="text-align:right;" colspan="3"><b>Total Due:</b></td>
                                     <td class="text-right">
                                         <input id="dueAmmount" class="form-control" name="due_amount" value="0.00" readonly="" type="text">
