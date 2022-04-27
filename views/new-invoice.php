@@ -18,21 +18,27 @@
                                 <label for="customer_name" class="col-md-2 col-form-label">Customers <i class="text-danger">*</i></label>
                                 <div class="col-md-3">
                                     <select class="form-control" name="customer_id" id="customer_id" onchange="Customer(this.value)" required>
-                                        <option value="0">-- Select Customer --</option>
-                                        <option value="1">Rahim</option>
+                                        <option selected disabled>-- Select Customer --</option>
+                                        <?php
+                                            if(isset($customersData)){
+                                                foreach ($customersData as $key => $value) {
+                                                    echo "<option value='".$value['id']."'>".$value['customer_name']."</option>";
+                                                }
+                                            }
+                                        ?>
                                     </select>
 
-                                    <input id="customer_name" class="hidden_value" type="hidden" name="customer_name" require readonly>
+                                    <input class="hidden_value" type="hidden" name="customer_name" id="InvCustomerName" require readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" autocomplete="off" name="customer_phone" class=" form-control" placeholder="Customer Phone No" id="customer_phone" readonly>
+                                    <input type="text" autocomplete="off" name="customer_phone" id="InvCustomerPhone" class=" form-control" placeholder="Customer Phone No" readonly>
                                 </div>
                                 <div class="col-sm-3">
                                     <a href="customer.php" class="btn btn-success btn-sm">New Customer</a>
                                 </div>
                                 <div class="col-md-2"></div>
                                 <div class="col-md-9 pt-2">
-                                    <input type="text" name="customer_address" autocomplete="off" class=" form-control" placeholder="Customer Address" id="customer_address" readonly>
+                                    <input type="text" name="customer_address" autocomplete="off" class=" form-control" placeholder="Customer Address" id="InvCustomerAddress" readonly>
                                 </div>
                             </div>                                
                         </div>
