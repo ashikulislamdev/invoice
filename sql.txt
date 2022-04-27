@@ -61,18 +61,25 @@ CREATE TABLE `cost` (
 );
 
 
-CREATE TABLE `invoice` (
+CREATE TABLE `invoice_item` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
+    `invoice_id` int(11) NOT NULL,
+    `product_name` varchar(255) NOT NULL,
     `product_id` int(11) NOT NULL,
-    `product_name` TEXT,
-    `product_suply_price` int(11) NOT NULL,
-    `product_sale_price` int(11) NOT NULL,
-    `customer_id` int(11) NOT NULL,
     `supplier_id` int(11) NOT NULL,
-    `discount` int(11) NOT NULL,
-    `war_day` int(11) NOT NULL,
-    `total` int(11) NOT NULL,
-    `due` int(11) NOT NULL,
-    `createdOn` datetime NOT NULL,
+    `supplier_price` int(11) NOT NULL,
+    `sale_price` int(11) NOT NULL,
     PRIMARY KEY (`id`)
   );
+
+  
+  CREATE TABLE `invoice` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `customer_id` int(11) NOT NULL,
+    `discount` int(11) NOT NULL,
+    `pay` int(11) NOT NULL,
+    `due` int(11) NOT NULL,
+    `total` int(11) NOT NULL,
+    `created` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+  )

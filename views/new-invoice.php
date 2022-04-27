@@ -1,3 +1,6 @@
+<?php 
+    include('api/customers.php');
+?>
 
 <div class="container">
     <div class="card" style="border-radius: 0px;">
@@ -8,15 +11,15 @@
             <form class="form-vertical" id="addinvoice" name="addinvoice" enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
                 <div class="panel-body">
                     <div class="row"> 
-                        <div id="error"></div>                       
+                        <div id="error"></div>     
+                        
                         <div class="col-sm-12" id="customer_section_1">
                             <div class="form-group row">
                                 <label for="customer_name" class="col-md-2 col-form-label">Customers <i class="text-danger">*</i></label>
                                 <div class="col-md-3">
-                                    <select class="form-control" name="customer_id" id="customer_id" required>
-                                        <option value="">-- Select Customer --</option>
-                                        <option value="">Rahim</option>
-                                        <option value="">Karim</option>
+                                    <select class="form-control" name="customer_id" id="customer_id" onchange="Customer(this.value)" required>
+                                        <option value="0">-- Select Customer --</option>
+                                        <option value="1">Rahim</option>
                                     </select>
 
                                     <input id="customer_name" class="hidden_value" type="hidden" name="customer_name" require readonly>
@@ -128,3 +131,4 @@
         </div>
     </div>
 </div>
+
