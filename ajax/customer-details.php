@@ -2,7 +2,7 @@
 
     include 'session.php';
     
-    $data = ['status'=>false, 'collection'=>null];
+    $result = ['status'=>false, 'collection'=>null];
 
     if(isset($_POST['customer_id'])){
         $customer_id = trim(htmlentities(addslashes($_POST['customer_id'])));
@@ -12,9 +12,9 @@
         if($runSql && mysqli_num_rows($runSql) > 0){
             $data = mysqli_fetch_assoc($runSql);
 
-            $data = ['status'=>true, 'collection'=>$data];
+            $result = ['status'=>true, 'collection'=>$data];
         }
     }
 
-    echo json_encode($data);
+    echo json_encode($result);
 ?>

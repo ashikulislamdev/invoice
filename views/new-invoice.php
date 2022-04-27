@@ -65,11 +65,11 @@
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="addinvoiceItem">
-                                <tr>
+                            <tbody id="addInvoiceItem">
+                                <tr id="invoiceItem1">
                                     <td style="width: 220px">
-                                        <select name="product_id[]" class="form-control" required>
-                                            <option value="">-- Select Product --</option>
+                                        <select name="product_id[]" class="form-control" class="tableProductList" required>
+                                            <option  selected disabled>-- Select Product --</option>
                                         </select>
                                     </td>
                                     
@@ -82,17 +82,16 @@
                                     <td style="width: 150px">
                                         <input name="product_rate[]" class="form-control" readonly> 
                                     </td>
-                                    <!-- Discount -->
                                     <td>
                                         <input name="discount[]" type="text"class="form-control" placeholder="0.00">
                                     </td>
                                     
                                     <td style="width: 150px">
-                                        <input class="total_price form-control" name="total_price[]" id="total_price_1" value="" tabindex="-1" readonly="" type="text">
+                                        <input class="total_price form-control" name="total_price[]" id="total_price_1" readonly type="text">
                                     </td>
 
                                     <td>                                            
-                                        <button class="btn btn-danger btn-sm mx-auto" type="button" onclick="deleteRow(this)" value="Delete">Delete</button>
+                                    <button type="button" name="rowRemove" data-row="invoiceItem1" class="btn btn-danger btn-sm rowRemove "><span class="fa fa-trash"></span></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -112,7 +111,7 @@
                                 </tr>
                                 <tr>
                                     <td align="center" colspan="2">
-                                        <input id="add-invoice-item" class="btn btn-info" name="add-invoice-item" onclick="addInputField('addinvoiceItem');" value="Add New Item" tabindex="6" type="button">
+                                        <input id="add-invoice-item" class="btn btn-info" name="add-invoice-item" onclick="addNewRow();" value="Add New Item" tabindex="6" type="button">
                                     </td>
                                     <td style="text-align:right;" colspan="3"><b>Paid Amount:</b></td>
                                     <td class="text-right">
