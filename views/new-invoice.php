@@ -68,7 +68,7 @@
                             <tbody id="addInvoiceItem">
                                 <tr id="invoiceItem1">
                                     <td style="width: 220px">
-                                        <select name="product_id[]" class="form-control" class="tableProductList" required>
+                                        <select name="product_id[]" class="form-control productList" id="productList" required>
                                             <option  selected disabled>-- Select Product --</option>
                                         </select>
                                     </td>
