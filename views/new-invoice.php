@@ -68,16 +68,16 @@
                             <tbody id="addInvoiceItem">
                                 <tr id="invoiceItem1">
                                     <td style="width: 220px">
-                                        <select name="product_id[]" class="form-control productList" id="productList" required>
+                                        <select name="product_id[]" class="form-control productList" onchange="Products(this.value)" id="productList" required>
                                             <option  selected disabled>-- Select Product --</option>
                                         </select>
                                     </td>
                                     
                                     <td>
-                                        <input type="text" name="available_quantity[]" class="form-control" readonly>
+                                        <input type="text" id="availableProductQty" name="available_quantity[]" class="form-control" readonly>
                                     </td>
                                     <td>
-                                        <input type="text" name="product_quantity[]" class="form-control" placeholder="0.00" required>
+                                        <input type="number" name="product_quantity[]" class="form-control" placeholder="00" required>
                                     </td>
                                     <td style="width: 150px">
                                         <input name="product_rate[]" class="form-control" readonly> 

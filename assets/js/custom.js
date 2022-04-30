@@ -19,6 +19,22 @@ function Customer(id){
 }
 
 
+// Get Products Data by onchange in add invoice
+function Products(id){
+    $('#productList').change(function(){
+        var id = $(this).find(':selected')[0].id;
+        $.ajax({
+            type : 'POST',
+            url : 'ajax/product-details.php',
+            data : {product_id : id},
+            dataType: 'json',
+            success : function(data){
+                $('availableProductQty').text(data.quantity);
+            }
+        });
+    });
+}
+
 
 // Add New Table Row in Invoice Table
 var rowCount = 1;

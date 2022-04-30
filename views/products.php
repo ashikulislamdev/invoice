@@ -129,7 +129,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="voucher_no" class="col-form-label">Voucher No:</label>
-                                                        <input type="number" class="form-control" name="voucher_no" value="<?php echo $value['voucher_no']; ?>" placeholder="Product Voucher No (Number)" required>
+                                                        <input type="text" class="form-control" name="voucher_no" value="<?php echo $value['voucher_no']; ?>" placeholder="Product Voucher No (Number)" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -245,7 +245,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="voucher_no" class="col-form-label">Voucher No:</label>
-                                <input type="number" class="form-control" name="voucher_no" placeholder="Product Voucher No (Number)" required>
+                                <input type="text" class="form-control" name="voucher_no" placeholder="Product Voucher No (Number)" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -266,7 +266,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="warranty_days" class="col-form-label">Warranty Days:</label>
-                                <input type="text" class="form-control" name="warranty_days" placeholder="Product Voucher No" required>
+                                <input type="text" class="form-control" name="warranty_days" placeholder="Product Warranty day" required>
                             </div>
                         </div>
                     </div>
