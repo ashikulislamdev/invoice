@@ -59,7 +59,6 @@
                                     <th class="text-center">Available Qty</th>
                                     <th class="text-center">Quantity</th>
                                     <th class="text-center">Rate <i class="text-danger">*</i></th>
-                                    <th class="text-center">Discount/item </th>
                                     <th class="text-center">Total 
                                     </th>
                                     <th class="text-center">Action</th>
@@ -75,7 +74,7 @@
                                     </td>
                                     
                                     <td>
-                                        <input type="text" name="available_quantity[]" class="form-control invoiceAvailableQty" readonly>
+                                        <input type="text" name="available_quantity[]" class="form-control invoiceAvailableQty" value="" readonly>
                                     </td>
                                     <td>
                                         <input type="text" name="product_quantity[]" class="form-control invoiceOrderQty" placeholder="0.00" data-row="invoiceItem1" required>
@@ -84,16 +83,13 @@
                                         <input name="sale_price[]" class="form-control invoiceProductSalePrice" readonly>
                                         <input type="hidden" name="supplier_price[]" class="invoiceProductSupplierPrice">
                                     </td>
-                                    <td>
-                                        <input name="discount[]" type="number"class="form-control invoiceProductDiscount" placeholder="0.00">
-                                    </td>
                                     
                                     <td style="width: 150px">
                                         <input class="form-control invoiceTotalPrice" name="total_price[]" readonly type="number">
                                     </td>
 
-                                    <td>                                            
-                                    <button type="button" name="rowRemove" data-row="invoiceItem1" class="btn btn-danger btn-sm rowRemove "><span class="fa fa-trash"></span></button>
+                                    <td class="text-center">                                            
+                                        <button type="button" name="rowRemove" data-row="invoiceItem1" class="btn btn-danger btn-sm rowRemove"><span class="fa fa-trash"></span></button>
                                     </td>
                                 </tr>
                             </tbody>
