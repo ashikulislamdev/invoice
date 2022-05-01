@@ -68,26 +68,28 @@
                             <tbody id="addInvoiceItem">
                                 <tr id="invoiceItem1">
                                     <td style="width: 220px">
-                                        <select name="product_id[]" class="form-control productList" onchange="Products(this.value)" id="productList" required>
+                                        <select name="product_id[]" class="form-control invoiceProducts" id="productItem1" data-row="invoiceItem1" required>
                                             <option  selected disabled>-- Select Product --</option>
                                         </select>
+                                        <input type="hidden" name="product_name[]" class="invoiceProductName">
                                     </td>
                                     
                                     <td>
-                                        <input type="text" id="availableProductQty" name="available_quantity[]" class="form-control" readonly>
+                                        <input type="text" name="available_quantity[]" class="form-control invoiceAvailableQty" readonly>
                                     </td>
                                     <td>
-                                        <input type="number" name="product_quantity[]" class="form-control" placeholder="00" required>
+                                        <input type="text" name="product_quantity[]" class="form-control invoiceOrderQty" placeholder="0.00" data-row="invoiceItem1" required>
                                     </td>
                                     <td style="width: 150px">
-                                        <input name="product_rate[]" class="form-control" readonly> 
+                                        <input name="sale_price[]" class="form-control invoiceProductSalePrice" readonly>
+                                        <input type="hidden" name="supplier_price[]" class="invoiceProductSupplierPrice">
                                     </td>
                                     <td>
-                                        <input name="discount[]" type="text"class="form-control" placeholder="0.00">
+                                        <input name="discount[]" type="number"class="form-control invoiceProductDiscount" placeholder="0.00">
                                     </td>
                                     
                                     <td style="width: 150px">
-                                        <input class="total_price form-control" name="total_price[]" id="total_price_1" readonly type="text">
+                                        <input class="form-control invoiceTotalPrice" name="total_price[]" readonly type="number">
                                     </td>
 
                                     <td>                                            
