@@ -2,6 +2,9 @@
     include('api/customers.php');
 ?>
 
+
+<div class="pb-5 text-center" id="message_section"></div>
+
 <div class="container">
     <div class="card" style="border-radius: 0px;">
         <div class="card-header bg-primary text-white">
@@ -17,7 +20,7 @@
                             <div class="form-group row">
                                 <label for="customer_name" class="col-md-2 col-form-label">Customers <i class="text-danger">*</i></label>
                                 <div class="col-md-3">
-                                    <select class="form-control" name="customer_id" id="customer_id" onchange="Customer(this.value)" required>
+                                    <select class="form-control" id="customer_id" onchange="Customer(this.value)" required>
                                         <option selected disabled>-- Select Customer --</option>
                                         <?php
                                             if(isset($customersData)){
@@ -28,6 +31,7 @@
                                         ?>
                                     </select>
 
+                                    <input class="hidden_value" type="hidden" name="customer_id" id="InvCustomerId" require readonly>
                                     <input class="hidden_value" type="hidden" name="customer_name" id="InvCustomerName" require readonly>
                                 </div>
                                 <div class="col-md-3">
@@ -77,7 +81,7 @@
                                         <input type="text" name="available_quantity[]" class="form-control invoiceAvailableQty" value="" readonly>
                                     </td>
                                     <td>
-                                        <input type="text" name="product_quantity[]" class="form-control invoiceOrderQty" placeholder="0.00" data-row="invoiceItem1" required>
+                                        <input type="text" name="product_quantity[]" class="form-control invoiceOrderQty" placeholder="0" data-row="invoiceItem1" required>
                                     </td>
                                     <td style="width: 150px">
                                         <input name="sale_price[]" class="form-control invoiceProductSalePrice" readonly>

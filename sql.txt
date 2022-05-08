@@ -64,16 +64,13 @@ CREATE TABLE `cost` (
 CREATE TABLE `invoice_item` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `invoice_id` int(11) NOT NULL,
-    `product_name` varchar(255) NOT NULL,
     `product_id` int(11) NOT NULL,
-    `supplier_id` int(11) NOT NULL,
-    `supplier_price` int(11) NOT NULL,
-    `sale_price` int(11) NOT NULL,
+    `total` int(11) NOT NULL,
     PRIMARY KEY (`id`)
-  );
+);
 
   
-  CREATE TABLE `invoice` (
+CREATE TABLE `invoice` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `customer_id` int(11) NOT NULL,
     `discount` int(11) NOT NULL,
@@ -82,4 +79,4 @@ CREATE TABLE `invoice_item` (
     `total` int(11) NOT NULL,
     `created` datetime NOT NULL,
     PRIMARY KEY (`id`)
-  )
+)
