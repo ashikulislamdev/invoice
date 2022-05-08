@@ -36,6 +36,10 @@ $(document).on("click", ".rowRemove", function(a){
     var delete_row = $(this).data("row");
     //alert(delete_row);
     $('#' + delete_row).remove();
+
+    grandTotal();
+    totalDiscount();
+    invoicePaidAmount();
 });
 
 // Show Dynamical Product List
@@ -91,6 +95,7 @@ $(document).on("change", ".invoiceProducts", function(a){
 });
 
 
+// Change Invoice Quantity
 $(document).on("keyup", ".invoiceOrderQty", function(a){
     var selector = $(this).data("row");
     var quantity = $('#' + selector + " .invoiceOrderQty").val();
@@ -110,8 +115,10 @@ $(document).on("keyup", ".invoiceOrderQty", function(a){
         }else{
             var total_amount = price * quantity;
             $('#' + selector + " .invoiceTotalPrice").val(total_amount);
-            grandTotal();
         }
+        grandTotal();
+        totalDiscount();
+        invoicePaidAmount();
     }else{
         alert("Please select a product");
         $('#' + selector + " .invoiceOrderQty").val('');
@@ -149,6 +156,7 @@ $(document).on("keyup", ".invoiceOrderQty", function(a){
 } */
 
 
+// Grand total
 function grandTotal(){
     var elements = document.getElementsByClassName('invoiceTotalPrice');
 
@@ -156,10 +164,62 @@ function grandTotal(){
     total = 0;
 
     for (var i = 0; i < myLength; ++i) {
-        total = total + elements[i].value;
-        console.log(total);
+        total = total + +elements[i].value;
+        // console.log(total);
     }
 
     $('#grandTotal').val(total);
+    $('#grandTotalHidden').val(total);
 }
 grandTotal();
+
+
+// Total discount 
+function totalDiscount(){
+    var total_discount = $("#total_discount").val();
+    var grand_total_hidden = $('#grandTotalHidden').val();
+
+    var grand_total = grand_total_hidden - total_discount;
+
+    if(grand_total < 0){
+        alert('Discount should be less than grand total');
+        $("#total_discount").val('');
+        grandTotal();
+    }else{
+        $('#grandTotal').val(grand_total);
+    }
+    invoicePaidAmount();
+}
+
+// Total Paid Amount
+function invoicePaidAmount(){
+    var paid_amount = $('#paidAmount').val();
+    var grand_total = $('#grandTotal').val();
+
+    var total = grand_total - paid_amount;
+
+    if(total < 0){
+        alert('Paid amount should be less than grand total');
+        $("#paidAmount").val('');
+        $("#dueAmount").val(grand_total);
+    }else{
+        $('#dueAmount').val(total);
+    }
+}
+
+
+// Full Paid Amount
+function fullPaidAmount(){
+    var grand_total = $('#grandTotal').val();
+
+    $("#paidAmount").val(grand_total);
+    $("#dueAmount").val(0);
+}
+
+
+// Invoice Submit
+$("#invoice_submit").on("click", function(){
+    var form = $("#addInvoice").serialize();
+
+    console.log(form);
+});

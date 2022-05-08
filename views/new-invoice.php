@@ -8,7 +8,7 @@
             <h4 class="m-0">Add New Invoice</h4>
         </div>
         <div class="card-body pt-4">
-            <form class="form-vertical" id="addinvoice" name="addinvoice" enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
+            <form class="form-vertical" id="addInvoice" name="addInvoice" enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
                 <div class="panel-body">
                     <div class="row"> 
                         <div id="error"></div>     
@@ -44,14 +44,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="datepicker_invoice_date" class="col-sm-2 col-form-label">Date <i class="text-danger">*</i></label>
+                        <label for="invoice_date" class="col-sm-2 col-form-label">Date <i class="text-danger">*</i></label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" autocomplete="off" required="" id="datepicker_invoice_date" name="datepicker_invoice_date" placeholder="yyyy-mm-dd">
+                            <input type="date" class="form-control" autocomplete="off" required="" id="invoice_date" name="invoice_date" placeholder="yyyy-mm-dd">
                         </div>
                     </div>  
 
                     <div class="table-responsive" style="margin-top: 10px">
-                        <table class="table table-bordered table-hover" id="normalinvoice">
+                        <table class="table table-bordered table-hover" id="normalInvoice">
                             <thead>
                                 <tr>
                                     <th class="text-center">Item Information <i class="text-danger">*</i></th>
@@ -98,13 +98,14 @@
                                 <tr>
                                     <td style="text-align:right;" colspan="5"><b>Total Discount:</b></td>
                                     <td class="text-right">
-                                        <input id="total_discount_ammount" class="form-control" name="total_discount" tabindex="-1" value="0.00" readonly="" type="text">
+                                        <input type="number" id="total_discount" class="form-control" name="total_discount" placeholder="0" onkeyup="totalDiscount()">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="5" style="text-align:right;"><b>Grand Total:</b></td>
                                     <td class="text-right">
-                                        <input id="grandTotal" class="form-control" name="grand_total_price" value="0.00" tabindex="-1" readonly="" type="text">
+                                        <input id="grandTotal" class="form-control" name="grand_total" value="0" readonly type="number">
+                                        <input id="grandTotalHidden" class="form-control" name="grand_total_hidden" value="0" readonly type="hidden">
                                     </td>
                                 </tr>
                                 <tr>
@@ -113,17 +114,17 @@
                                     </td>
                                     <td style="text-align:right;" colspan="3"><b>Paid Amount:</b></td>
                                     <td class="text-right">
-                                        <input id="paidAmount" autocomplete="off" class="form-control" name="paid_amount" onkeyup="invoice_paidamount();" value="" placeholder="0.00" tabindex="7" type="text">
+                                        <input id="paidAmount" autocomplete="off" class="form-control" name="paid_amount" onkeyup="invoicePaidAmount();" placeholder="0" type="number">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="center" colspan="2">
-                                        <input id="add-invoice" class="btn btn-success" name="add-invoice" value="Submit" tabindex="9" type="submit">
-                                        <input id="full_paid_tab" class="btn btn-warning" name="" onclick="full_paid();" value="Full Paid" tabindex="8" type="button">
+                                        <input id="invoice_submit" class="btn btn-success" name="add-invoice" value="Submit" tabindex="9" type="button">
+                                        <input id="full_paid_tab" class="btn btn-warning" onclick="fullPaidAmount();" value="Full Paid" type="button">
                                     </td>
                                     <td style="text-align:right;" colspan="3"><b>Total Due:</b></td>
                                     <td class="text-right">
-                                        <input id="dueAmmount" class="form-control" name="due_amount" value="0.00" readonly="" type="text">
+                                        <input id="dueAmount" class="form-control" name="due_amount" value="0" readonly="" type="number">
                                     </td>
                                 </tr>
                             </tfoot>
