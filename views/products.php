@@ -34,7 +34,7 @@
 							<td><?php echo  date("jS F, Y", strtotime($value['created'])); ?></td>
 							<td class="action-col">
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
-								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a>
+								<button data-toggle="modal" data-target="#edit_modal<?php echo $value['id']; ?>" class="btn btn-sm bg-success" disabled>Edit</button>
 								<a href="#delete_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-danger">Delete</a>
 							</td>
 						</tr>

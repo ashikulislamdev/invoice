@@ -104,6 +104,8 @@
                                                     include("views/loan.php");
                                                 }else if($views == 'cost'){
                                                     include("views/cost.php");
+                                                }else if($views == 'invoice-details'){
+                                                    include("views/invoice-details.php");
                                                 }
                                             }                                        
                                         ?>

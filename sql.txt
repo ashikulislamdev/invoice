@@ -60,23 +60,22 @@ CREATE TABLE `cost` (
     PRIMARY KEY (`id`)
 );
 
-
-CREATE TABLE `invoice_item` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `invoice_id` int(11) NOT NULL,
-    `product_id` int(11) NOT NULL,
-    `total` int(11) NOT NULL,
-    PRIMARY KEY (`id`)
-);
-
   
-CREATE TABLE `invoice` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `invoices` (
+    `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `customer_id` int(11) NOT NULL,
     `discount` int(11) NOT NULL,
     `pay` int(11) NOT NULL,
     `due` int(11) NOT NULL,
     `total` int(11) NOT NULL,
-    `created` datetime NOT NULL,
-    PRIMARY KEY (`id`)
+    `created` TIMESTAMP NOT NULL
 )
+
+
+CREATE TABLE `invoice_item` (
+    `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `invoice_id` int(11) NOT NULL,
+    `product_id` int(11) NOT NULL,
+    `quantity` int(11) NOT NULL,
+    `total` int(11) NOT NULL
+);

@@ -3,7 +3,7 @@
 ?>
 
 
-<div class="pb-5 text-center" id="message_section"></div>
+<div class="pb-2 text-center" id="message_section"></div>
 
 <div class="container">
     <div class="card" style="border-radius: 0px;">
@@ -13,7 +13,7 @@
         <div class="card-body pt-4">
             <form class="form-vertical" id="addInvoice" name="addInvoice" enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
                 <div class="panel-body">
-                    <div class="row"> 
+                    <div class="row">
                         <div id="error"></div>     
                         
                         <div class="col-sm-12" id="customer_section_1">

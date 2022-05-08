@@ -56,7 +56,9 @@ function productList($productItem){
                 // console.log(res.collection);
     
                 res.collection.forEach(element => {
-                    $("#" + $productItem).append("<option value='"+element.id+"'>"+element.name+"</option>");
+                    if(element.quantity > 0){
+                        $("#" + $productItem).append("<option value='"+element.id+"'>"+element.name+"</option>");
+                    }                    
                 });
             }
         }
