@@ -25,7 +25,7 @@
                         <?php
                             if(isset($productsData) && (count($productsData) > 0)){
                                 foreach ($productsData as $key => $value) {
-                                    if ($value['quantity'] != 0) {
+                                    if ($value['quantity'] > 0) {
                                         ?>
 						<tr>
 							<td><?php echo ++$key; ?></td>
@@ -188,8 +188,6 @@
                             </div>
                         </div>
                         <?php
-                                    }else{
-                                        echo "<tr><td colspan='5' class='text-center text-danger'><h5>No Record Found..!</h5></td></tr>";
                                     }
                                 }
                             }else{

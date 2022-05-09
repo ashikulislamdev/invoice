@@ -22,12 +22,14 @@
 ?>
 
   <body>
-       <!-- Pre-loader start -->
+      
+    <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="loader-track">
             <div class="loader-bar"></div>
         </div>
     </div>
+    <div class="loader_overlay"><div class="loader"></div></div>
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>

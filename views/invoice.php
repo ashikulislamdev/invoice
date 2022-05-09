@@ -1,7 +1,9 @@
 
 <?php
     // Include Invoice API
-    include 'api/invoice.php';
+    include 'api/invoices.php';
+    // Include Customer API
+    include 'api/customers.php';
 ?>
 
 <div class="row">
@@ -13,8 +15,8 @@
 				<table class="table table-striped table-hover text-center" style="min-width: 400px;">
 					<thead>
 						<tr>
-							<th class="text-center">SL No</th>
-							<th class="text-center">Products</th>
+							<th class="text-center">Invoice ID</th>
+							<th class="text-center">Customer Name</th>
 							<th class="text-center">Amount</th>
 							<th class="text-center">Date</th>
 							<th class="text-center">Action</th>
@@ -22,17 +24,29 @@
 					</thead>
 					<tbody>
                         <?php
-                            if(isset($invoice_data) && (count($invoice_data) > 0)){
-                                foreach ($invoice_data as $key => $value) {
+                            if(isset($invoiceData) && (count($invoiceData) > 0)){
+                                foreach ($invoiceData as $key => $value) {
                                     ?>
 						<tr>
-							<td><?php echo ++$key; ?></td>
-							<td><?php echo $value['product_name']; ?></td>
+							<td><?php echo "#" . $value['id']; ?></td>
+							<td>
+								<?php
+									$customer_id = $value['customer_id'];
+									if(isset($customersData)){
+										foreach ($customersData as $customerInfo) {
+											if($customer_id == $customerInfo['id'] ){
+												echo $customerInfo['customer_name'];
+												break;
+											}
+										}
+									}
+								?>
+							</td>
 							<td><?php echo $value['total']; ?> TK</td>
-							<td><?php echo $value['createdOn']; ?></td>
+							<td><?php echo date('d M Y', strtotime($value['created'])) ?></td>
 							<td class="action-col">
-								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
-								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a>
+								<a href="invoice-details.php?invoice_id=<?php echo $value['id']; ?>" class="btn btn-sm bg-primary">View</a>
+								<!-- <a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a> -->
 								<a href="#delete_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-danger">Delete</a>
 							</td>
 						</tr>

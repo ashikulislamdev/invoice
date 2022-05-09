@@ -1,5 +1,6 @@
 // Get Customer Data by onchange in add invoice
 function Customer(id){
+    $(".loader_overlay").show();
     $.ajax({
         type : 'POST',
         url : 'ajax/customer-details.php',
@@ -8,6 +9,7 @@ function Customer(id){
             var res = JSON.parse(data);
             
             if(res.status == true){
+                $(".loader_overlay").hide();
                 $('#InvCustomerId').val(res.collection.id);
                 $('#InvCustomerName').val(res.collection.customer_name);
                 $('#InvCustomerPhone').val(res.collection.customer_phone);
@@ -73,11 +75,13 @@ $(document).on("change", ".invoiceProducts", function(a){
         var row = $(this).data("row");
         var product_id = $(this).val();
 
+        $(".loader_overlay").show();
         $.ajax({
             type : 'POST',
             url : 'ajax/product-details.php',
             data : {product_id : product_id},
             success : function(data){
+                $(".loader_overlay").hide();
                 var res = JSON.parse(data);
 
                 if(res.status == true){
@@ -194,12 +198,14 @@ $("#invoice_submit").on("click", function(){
     var form = $("#addInvoice").serialize();
     console.log(form);
 
+    $(".loader_overlay").show();
     $.ajax({
         type : 'POST',
         url : 'ajax/add-invoice.php',
         data : form,
         success : function(data){
             $("#message_section").html(data);
+            $(".loader_overlay").hide();
         }
     });
 });
