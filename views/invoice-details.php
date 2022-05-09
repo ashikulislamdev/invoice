@@ -103,7 +103,7 @@
 											if($product_id == $productInfo['id']){
 												echo $productInfo['name'];
                                                 echo "<br>";
-												echo $productInfo['warranty_days'] . " Days";
+												echo $productInfo['product_details']. ", " . $productInfo['warranty_days'] . " Days";
 												break;
 											}
 										}
