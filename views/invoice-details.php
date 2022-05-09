@@ -1,54 +1,125 @@
+<?php
+
+    // Import Product API
+    include 'api/products.php';
+
+    if(isset($_GET['invoice_id'])){
+        $invoice_id = trim(htmlentities(addslashes($_GET['invoice_id'])));
+
+        $sql = "SELECT * FROM `invoices` WHERE `id` = '$invoice_id'";
+        $runSql = mysqli_query($conn, $sql);
+        if($runSql && mysqli_num_rows($runSql) == 1){
+            $invoiceInfo = mysqli_fetch_assoc($runSql);
+
+            $customer_id = $invoiceInfo['customer_id'];
+
+            $customerSql = "SELECT * FROM `customers` WHERE `id` = '$customer_id'";
+            $runCustomerSql = mysqli_query($conn, $customerSql);
+            if($runCustomerSql && mysqli_num_rows($runCustomerSql) == 1){
+                $customerInfo = mysqli_fetch_assoc($runCustomerSql);
+            }
+
+            $invoiceItemSql = "SELECT * FROM `invoice_item` WHERE `invoice_id` = '$invoice_id'";
+            $runInvoiceItemSql = mysqli_query($conn, $invoiceItemSql);
+            if($runInvoiceItemSql && mysqli_num_rows($runInvoiceItemSql) > 0){
+                while($invItemRow = mysqli_fetch_assoc($runInvoiceItemSql)){
+                    $invoiceItemInfo[] = $invItemRow;
+                }
+            }
+        }
+
+        $instituteSql = "SELECT * FROM `instituteinfo` WHERE `id` = '1'";
+        $runInstituteSql = mysqli_query($conn, $instituteSql);
+        if($runInstituteSql && mysqli_num_rows($runInstituteSql) == 1){
+            $instituteInfo = mysqli_fetch_assoc($runInstituteSql);
+        }
+
+
+    }else{
+        die("Oops, Sorry Something Wrong..!");
+    }
+?>
+
+<?php if(isset($invoiceInfo)){ ?>
 <div id="printSection">
     <div class="col-12 mx-auto" style="width: 800px;">
         <div class="card p-0" style="border-radius: 0px;">
             <div class="card-header p-2 px-3" style="background-color: #c7c7c7; border-radius: 0px;">
-                <h5 class="float-left mb-0">Invoice #5</h5>
-                <div class="float-right">November 05, 2021</div>
+                <h5 class="float-left mb-0">Invoice <?php echo "#" . $invoiceInfo['id']; ?></h5>
+                <div class="float-right"><?php echo date('M d, Y', strtotime($invoiceInfo['created'])) ?></div>
             </div>
             <div class="card-body">
                 <div class="row mb-2">
-                    <div class="col-8">										
-                        <img src="http://satkaniacec.com/images/1618865702_RB_Logo%202.png" style="height: 80px;">
+                    <div class="col-8">
+                        <?php
+                            if(isset($instituteInfo)){
+                        ?>
+                        <img src="images/<?php echo $instituteInfo['instituteLogo'] ?>" style="height: 80px;">
                         <h5>Satkania CEC,</h5>
-                        <p><a class="text-primary" href="#"><span class="underline">www.satkaniacec.com</span></a></p>
-                        <p>Keranihat, Satkania<br>Chattogram<br>Bangladesh</p>
-                        <p>Phone: 01815 070747</p>
-                        
-                        </div>
+                        <p><a class="text-primary" href="http://satkaniacec.com/"><span class="underline">www.satkaniacec.com</span></a></p>
+                        <p class="m-0"><?php echo $instituteInfo['instituteAddress'] ?></p>
+                        <p>Phone: <?php echo $instituteInfo['institutePhone'] ?></p>
+                        <?php } ?>
+                    </div>
                     <div class="col-4">
+                        <?php
+                            if(isset($customerInfo)){
+                        ?>
                         <h5 class="pb-2">Invoice To:</h5>
                                                             
-                        <p class="m-0">MD Rabiull,</p>
-                        <p class="m-0">Chattogram</p>
-                        <p class="m-0">Phone: 01601308010</p>
+                        <p class="m-0"><?php echo $customerInfo['customer_name']; ?>,</p>
+                        <p class="m-0"><?php echo $customerInfo['address']; ?></p>
+                        <p class="m-0">Phone: <?php echo $customerInfo['customer_phone']; ?></p>
                         <hr class="hr">
                         <p>Invoice created by: Admin</p>                                        
-                                                                                                    
+                        <?php } ?>
+
                     </div>
 
                 </div>
                 
-                <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th class="text-center">Item Information</th>                                        
-                        <th class="text-center">Quantity</th>
-                        <th class="text-center">Rate</th>
-                        <th class="text-center">Discount/item</th>
-                        <th class="text-center">Total</th>                                        
-                    </tr>
-                </thead>
-                    <tbody>
+                <table class="table table-bordered table-striped text-center">
+                    <thead>
                         <tr>
-                            <td>Steel Bar</td>
-                            <td>1</td>
-                            <td>TK												
-                            2000 / None											
+                            <th class="text-center" style="width: 50px;">SL NO</th>
+                            <th class="text-center">Product</th>
+                            <th class="text-center" style="width: 100px;">Quantity</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            if (isset($invoiceItemInfo)) {
+                                foreach ($invoiceItemInfo as $key => $value) {
+                                    ?>
+                        <tr>
+                            <td><?php echo ++$key; ?></td>
+                            <td class="text-left">
+                                <?php
+                                    $product_id = $value['product_id'];
+									if(isset($productsData)){
+										foreach ($productsData as $productInfo) {
+											if($product_id == $productInfo['id']){
+												echo $productInfo['name'];
+                                                echo "<br>";
+												echo $productInfo['warranty_days'] . " Days";
+												break;
+											}
+										}
+									}
+                                ?>
                             </td>
-                            <td>TK0</td>
-                            <td>TK2000</td>
+                            <td><?php echo $value['quantity']; ?></td>
+                            <td>TK<?php echo ($value['total'] / $value['quantity']); ?></td>
+                            <td>TK <?php echo $value['total'] ?></td>
                         </tr>	
-                                                                                                
+                        <?php
+                                }
+                            }else{
+                                echo "<tr><td colspan='5'><h5 class='text-center text-danger'>No Item Found..!</h5></td><tr>";
+                            }
+                        ?>                                                                      
                     </tbody>
                 </table>
                 <div class="row">
@@ -56,11 +127,11 @@
                     </div>
                     <div class="col-6">
                         <div class="text-right">
-                            <div class="mb-1">Sub - Total Amount: TK2000</div>
-                            <div class="mb-1">Total Discount: TK0</div>
-                            <div class="mb-1">Grand Total: <strong>TK2000</strong></div>
-                            <div class="mb-1">Paid Total: TK2000</div>
-                            <div class="mb-1">Total Due: TK0</div>
+                            <div class="mb-1">Sub - Total Amount: TK<?php echo $invoiceInfo['total'] ?></div>
+                            <div class="mb-1">Total Discount: TK<?php echo $invoiceInfo['discount'] ?></div>
+                            <div class="mb-1">Grand Total: <strong>TK<?php echo $invoiceInfo['total'] + $invoiceInfo['discount'] ?></strong></div>
+                            <div class="mb-1">Paid Total: TK<?php echo $invoiceInfo['pay'] ?></div>
+                            <div class="mb-1">Total Due: TK<?php echo $invoiceInfo['due'] ?></div>
                         </div>
                     </div>
                 </div>
@@ -71,8 +142,7 @@
 <div class="col-12 text-center">
     <button onclick="printSection()" class="btn btn-info btn-lg py-2" style="width: 150px;"><span class="btn-label"><i class="ti-printer"></i></span> Print Now</button>
 </div>
-
-
+<?php } ?>
 
 
 
