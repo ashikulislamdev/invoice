@@ -79,6 +79,8 @@
                                         <hr>
                                         <p>Warranty Days: <b><?php echo $value['warranty_days']; ?></b></p>
                                         <hr>
+                                        <p>Product Details: <b><?php echo $value['product_details']; ?></b></p>
+                                        <hr>
                                         <p>Created: <b><?php echo $value['created']; ?></b></p>
                                     </div>
                                     <div class="modal-footer">
@@ -156,6 +158,13 @@
                                                     <div class="form-group">
                                                         <label for="warranty_days" class="col-form-label">Warranty Days:</label>
                                                         <input type="text" class="form-control" name="warranty_days" value="<?php echo $value['warranty_days']; ?>" placeholder="Product Voucher No" required>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="product_details" class="col-form-label">Product Details:</label>
+                                                        <textarea class="form-control" name="product_details" rows="3" placeholder="Product Details"><?php echo $value['product_details']; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -265,6 +274,12 @@
                             <div class="form-group">
                                 <label for="warranty_days" class="col-form-label">Warranty Days:</label>
                                 <input type="text" class="form-control" name="warranty_days" placeholder="Product Warranty day" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="product_details" class="col-form-label">Product Details:</label>
+                                <textarea class="form-control" name="product_details" cols="30" rows="3" placeholder="Product Details"></textarea>
                             </div>
                         </div>
                     </div>

@@ -79,3 +79,6 @@ CREATE TABLE `invoice_item` (
     `quantity` int(11) NOT NULL,
     `total` int(11) NOT NULL
 );
+
+
+ALTER TABLE `products` ADD `product_details` TEXT NOT NULL AFTER `warranty_days`;
