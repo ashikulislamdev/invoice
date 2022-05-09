@@ -103,7 +103,7 @@
 											if($product_id == $productInfo['id']){
 												echo $productInfo['name'];
                                                 echo "<br>";
-												echo $productInfo['product_details']. ", " . $productInfo['warranty_days'] . " Days";
+												echo "Serial:" . $productInfo['product_details'] . ", " . "Warranty: " . $productInfo['warranty_days'] . " Days";
 												break;
 											}
 										}
@@ -124,6 +124,7 @@
                 </table>
                 <div class="row">
                     <div class="col-6">
+                        
                     </div>
                     <div class="col-6">
                         <div class="text-right">
@@ -132,6 +133,8 @@
                             <div class="mb-1">Grand Total: <strong>TK<?php echo $invoiceInfo['total'] + $invoiceInfo['discount'] ?></strong></div>
                             <div class="mb-1">Paid Total: TK<?php echo $invoiceInfo['pay'] ?></div>
                             <div class="mb-1">Total Due: TK<?php echo $invoiceInfo['due'] ?></div>
+                            <br><br><br>
+                            <h5><span class="px-2" style="border-top: 1px solid black;">Satkania CEC</span></h5>
                         </div>
                     </div>
                 </div>
