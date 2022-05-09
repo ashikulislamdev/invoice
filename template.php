@@ -88,10 +88,6 @@
                                                     include("views/dashboard-view.php");
                                                 }else if($views == 'profile'){
                                                     include("views/profile.php");
-                                                }else if($views == 'money-receipt'){
-                                                    include("views/money-receipt.php");
-                                                }else if($views == 'money-receipt-view'){
-                                                    include("views/money-receipt-view.php");
                                                 }else if($views == 'supplier'){
                                                     include("views/supplier.php");
                                                 }else if($views == 'customer'){

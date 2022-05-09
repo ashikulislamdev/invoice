@@ -8,7 +8,7 @@
 
 <div class="row">
 	<div class="col-md-12 mx-auto">
-		<a class="btn btn-primary my-2 font-weight-bold px-4" style="border-radius: 0px;" href="new-invoice.php">Create Invoice</a>
+		<a class="btn btn-primary my-2 font-weight-bold px-4" style="border-radius: 0px;" href="new-invoice.php"> New Invoice</a>
 		<div class="card" style="border-radius: 0px;">
 			<h4 class="bg-primary p-3">Invoice List</h4>
 			<div class="px-2" style="overflow: auto;">

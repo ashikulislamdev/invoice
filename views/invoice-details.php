@@ -70,8 +70,6 @@
                         <p class="m-0"><?php echo $customerInfo['customer_name']; ?>,</p>
                         <p class="m-0"><?php echo $customerInfo['address']; ?></p>
                         <p class="m-0">Phone: <?php echo $customerInfo['customer_phone']; ?></p>
-                        <hr class="hr">
-                        <p>Invoice created by: Admin</p>                                        
                         <?php } ?>
 
                     </div>
@@ -136,6 +134,9 @@
                             <br><br><br>
                             <h5><span class="px-2" style="border-top: 1px solid black;">Satkania CEC</span></h5>
                         </div>
+                    </div>
+                    <div class="col-md-12 pt-3 text-center">
+                        <p>Invoice created by: Admin</p> 
                     </div>
                 </div>
             </div>
