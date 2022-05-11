@@ -31,7 +31,7 @@
         $instituteSql = "SELECT * FROM `instituteinfo` WHERE `id` = '1'";
         $runInstituteSql = mysqli_query($conn, $instituteSql);
         if($runInstituteSql && mysqli_num_rows($runInstituteSql) == 1){
-            $instituteInfo = mysqli_fetch_assoc($runInstituteSql);
+            $instituteinfo = mysqli_fetch_assoc($runInstituteSql);
         }
 
 
@@ -52,13 +52,13 @@
                 <div class="row mb-2">
                     <div class="col-8">
                         <?php
-                            if(isset($instituteInfo)){
+                            if(isset($instituteinfo)){
                         ?>
-                        <img src="images/<?php echo $instituteInfo['instituteLogo'] ?>" style="height: 80px;">
+                        <img src="images/<?php echo $instituteinfo['instituteLogo'] ?>" style="height: 80px;">
                         <h5>Satkania CEC,</h5>
                         <p><a class="text-primary" href="http://satkaniacec.com/"><span class="underline">www.satkaniacec.com</span></a></p>
-                        <p class="m-0"><?php echo $instituteInfo['instituteAddress'] ?></p>
-                        <p>Phone: <?php echo $instituteInfo['institutePhone'] ?></p>
+                        <p class="m-0"><?php echo $instituteinfo['instituteAddress'] ?></p>
+                        <p>Phone: <?php echo $instituteinfo['institutePhone'] ?></p>
                         <?php } ?>
                     </div>
                     <div class="col-4">

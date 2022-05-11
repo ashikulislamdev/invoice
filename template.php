@@ -2,7 +2,7 @@
     include('session.php');
     
     if(isset($conn)){
-        $navInfo = "SELECT * FROM `instituteInfo` WHERE `id` = '1'";
+        $navInfo = "SELECT * FROM `instituteinfo` WHERE `id` = '1'";
         $runNavInfo = mysqli_query($conn, $navInfo);
 
         if($runNavInfo){

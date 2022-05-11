@@ -99,7 +99,7 @@
 
 			<div class="row pb-3">
 				<div class="col-md-10 text-center mx-auto">
-					<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#instituteInfoModal">Update Shop Information</button>
+					<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#instituteinfoModal">Update Shop Information</button>
 				</div>
 			</div>
 
@@ -109,7 +109,7 @@
 		<p><a href="#" data-toggle="modal" data-target="#pass_modal">Update Login Details ?</a></p>
 	</div>
 
-	<div class="modal fade" id="instituteInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="instituteinfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 		<div class="modal-header">
