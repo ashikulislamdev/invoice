@@ -22,13 +22,21 @@
 							<th class="text-center">Action</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="dataTable">
                         <?php
                             if(isset($invoiceData) && (count($invoiceData) > 0)){
                                 foreach ($invoiceData as $key => $value) {
                                     ?>
 						<tr>
-							<td><?php echo "#" . $value['id']; ?></td>
+							<td>
+								<?php
+									echo "#" . $value['id'];
+
+									if($value['due'] > 0){
+										echo "<span style='display: none;'> due</span>";
+									}
+								?>
+							</td>
 							<td>
 								<?php
 									$customer_id = $value['customer_id'];

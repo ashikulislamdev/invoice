@@ -9,7 +9,7 @@
                                <div class="main-search morphsearch-search">
                                    <div class="input-group">
                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
-                                       <input type="text" class="form-control" placeholder="Enter Keyword">
+                                       <input type="text" class="form-control search-input-box" placeholder="Enter Keyword">
                                        <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
                                    </div>
                                </div>
@@ -33,7 +33,7 @@
                                <div class="main-search morphsearch-search">
                                    <div class="input-group">
                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
-                                       <input type="text" class="form-control">
+                                       <input type="text" class="form-control search-input-box">
                                        <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
                                    </div>
                                </div>

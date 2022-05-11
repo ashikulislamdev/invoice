@@ -44,7 +44,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Serial No</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
@@ -79,7 +79,7 @@
                                         <hr>
                                         <p>Warranty Days: <b><?php echo $value['warranty_days']; ?></b></p>
                                         <hr>
-                                        <p>Product Details: <b><?php echo $value['product_details']; ?></b></p>
+                                        <p>Serial No: <b><?php echo $value['product_details']; ?></b></p>
                                         <hr>
                                         <p>Created: <b><?php echo $value['created']; ?></b></p>
                                     </div>
@@ -161,10 +161,10 @@
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="product_details" class="col-form-label">Product Details:</label>
-                                                        <textarea class="form-control" name="product_details" rows="3" placeholder="Product Details"><?php echo $value['product_details']; ?></textarea>
+                                                        <label for="product_details" class="col-form-label">Serial No:</label>
+                                                        <textarea class="form-control" name="product_details" rows="3" placeholder="Serial No"><?php echo $value['product_details']; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -276,10 +276,10 @@
                                 <input type="text" class="form-control" name="warranty_days" placeholder="Product Warranty day" required>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product_details" class="col-form-label">Product Details:</label>
-                                <textarea class="form-control" name="product_details" cols="30" rows="3" placeholder="Product Details"></textarea>
+                                <label for="product_details" class="col-form-label">Serial No:</label>
+                                <textarea class="form-control" name="product_details" cols="30" rows="3" placeholder="Serial No"></textarea>
                             </div>
                         </div>
                     </div>

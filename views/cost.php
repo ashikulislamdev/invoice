@@ -79,19 +79,19 @@
                                                     <input type="hidden" name="cost_edit_id" value="<?php echo $value['id']; ?>" required readonly>
                                                     <div class="form-group">
                                                         <label for="title" class="col-form-label">Title:</label>
-                                                        <input type="text" class="form-control" name="title" value="<?php echo $value['title']; ?>" placeholder="Enter supplier name" required>
+                                                        <input type="text" class="form-control" name="title" value="<?php echo $value['title']; ?>" placeholder="Enter Title" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="amount" class="col-form-label">Amount:</label>
-                                                        <input type="number" class="form-control" name="amount" value="<?php echo $value['amount']; ?>" placeholder="Enter supplier phone" required>
+                                                        <input type="number" class="form-control" name="amount" value="<?php echo $value['amount']; ?>" placeholder="Enter  Amount (number)" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="date" class="col-form-label">Date:</label>
-                                                        <input type="date" class="form-control" name="date" value="<?php echo $value['date']; ?>" placeholder="Enter Shop Name" required>
+                                                        <input type="date" class="form-control" name="date" value="<?php echo $value['date']; ?>" placeholder="Date" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="note" class="col-form-label">Note:</label>
-                                                        <textarea name="note" style="min-height: 120px;" class="form-control" placeholder="Enter note"><?php echo $value['note']; ?></textarea>
+                                                        <textarea name="note" style="min-height: 120px;" class="form-control" placeholder="Enter Note"><?php echo $value['note']; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,19 +154,19 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="title" class="col-form-label">Title:</label>
-                                <input type="text" class="form-control" name="title" value="" placeholder="Enter supplier name" required>
+                                <input type="text" class="form-control" name="title" value="" placeholder="Enter Title" required>
                             </div>
                             <div class="form-group">
                                 <label for="amount" class="col-form-label">Amount:</label>
-                                <input type="number" class="form-control" name="amount" placeholder="Enter supplier phone" required>
+                                <input type="number" class="form-control" name="amount" placeholder="Enter  Amount (number)" required>
                             </div>
                             <div class="form-group">
                                 <label for="date" class="col-form-label">Date:</label>
-                                <input type="date" class="form-control" name="date" placeholder="Enter Shop Name" required>
+                                <input type="date" class="form-control" name="date" placeholder="Date" required>
                             </div>
                             <div class="form-group">
                                 <label for="note" class="col-form-label">Note:</label>
-                                <textarea name="note" style="min-height: 120px;" class="form-control" placeholder="Enter address"></textarea>
+                                <textarea name="note" style="min-height: 120px;" class="form-control" placeholder="Enter Note"></textarea>
                             </div>
                         </div>
                     </div>

@@ -211,3 +211,13 @@ $("#invoice_submit").on("click", function(){
 });
 
 
+// Search in table
+
+$(document).ready(function(){
+    $(".search-input-box").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#dataTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});

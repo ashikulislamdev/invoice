@@ -55,10 +55,9 @@
                             if(isset($instituteinfo)){
                         ?>
                         <img src="images/<?php echo $instituteinfo['instituteLogo'] ?>" style="height: 80px;">
-                        <h5>Satkania CEC,</h5>
-                        <p><a class="text-primary" href="http://satkaniacec.com/"><span class="underline">www.satkaniacec.com</span></a></p>
+                        <h5><?php echo $instituteinfo['instituteName']; ?>,</h5>
                         <p class="m-0"><?php echo $instituteinfo['instituteAddress'] ?></p>
-                        <p>Phone: <?php echo $instituteinfo['institutePhone'] ?></p>
+                        <p><?php echo $instituteinfo['institutePhone'] ?>, <a class="text-primary" href="http://satkaniacec.com/" target="_blank"><span class="underline">www.satkaniacec.com</span></a></p>
                         <?php } ?>
                     </div>
                     <div class="col-4">
