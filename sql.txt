@@ -82,3 +82,6 @@ CREATE TABLE `invoice_item` (
 
 
 ALTER TABLE `products` ADD `product_details` TEXT NOT NULL AFTER `warranty_days`;
+
+//supplier contact parson
+ALTER TABLE `suppliers` CHANGE `shop_name` `contact_parson` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
