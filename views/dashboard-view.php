@@ -57,9 +57,15 @@
     $cash = $total_income - $all_expense;
     $lastMonthCash = $lastMonthIncome - $lastMonthExpense;
 
+    $total_profit = 0;
+    $month_total_profit = 0;
 
-    $total_profit = $getSumPay - $all_expense;
-    $month_total_profit = $getLastMonthPay - $lastMonthExpense;
+    if($getSumPay > 0){
+        $total_profit = $getSumPay - $getProductCost;
+    }
+    if($getSumPay > 0){
+        $month_total_profit = $getLastMonthPay - $getLastMonthProductCost;
+    }
     
 ?>
 
