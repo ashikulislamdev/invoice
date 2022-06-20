@@ -93,7 +93,7 @@
                                     </td>
 
                                     <td class="text-center">                                            
-                                        <button type="button" name="rowRemove" data-row="invoiceItem1" class="btn btn-danger btn-sm rowRemove"><span class="fa fa-trash"></span></button>
+                                        <button type="button" name="rowRemove" data-row="invoiceItem1" class="btn btn-danger btn-sm rowRemove"><i class='bx bx-minus-circle'></i></button>
                                     </td>
                                 </tr>
                             </tbody>

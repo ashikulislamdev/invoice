@@ -57,6 +57,11 @@
 
     $cash = ($getSumLoan - $all_expense) + $getSumPay;
     $lastMonthCash = ($getLastMonthLoan - $lastMonthExpense) + $getLastMonthPay;
+
+
+    $total_profit = $all_expense - $getSumPay + $cash - $getSumLoan;
+
+    $month_total_profit = $lastMonthExpense - $getLastMonthPay + $lastMonthCash - $getLastMonthLoan;
     
 ?>
 
@@ -74,8 +79,8 @@
         <div class="card bg-c-yellow order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Total Income</h6>
-                <h2 class="text-right"><i class="ti-reload f-left"></i><span><?php echo $getSumPay; ?></span></h2>
-                <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthPay; ?></span></p>
+                <h2 class="text-right"><i class="ti-reload f-left"></i><span><?php echo $getSumPay ? $getSumPay : '0'; ?></span></h2>
+                <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthPay ? $getLastMonthPay : '0'; ?></span></p>
             </div>
         </div>
     </div>
@@ -94,6 +99,16 @@
                 <h6 class="m-b-20">Cash</h6>
                 <h2 class="text-right"><i class="ti-wallet f-left"></i><span><?php echo $cash; ?></span></h2>
                 <p class="m-b-0">This Month<span class="f-right"><?php echo $totalLastMonthIncome - $getLastMonthCost; ?></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-green order-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Profit</h6>
+                <h2 class="text-right"><i class="ti-wallet f-left"></i><span><?php echo $total_profit; ?></span></h2>
+                <p class="m-b-0">This Month<span class="f-right"><?php echo $month_total_profit; ?></span></p>
             </div>
         </div>
     </div>
