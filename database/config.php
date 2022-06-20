@@ -13,8 +13,5 @@
 	if($conn->connect_error){
 		die("Database Connection Filed!");
 	}
-
-
-	// hello database
-
+	
 ?>

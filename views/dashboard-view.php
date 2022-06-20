@@ -14,8 +14,8 @@
     $getSumPay = mysqli_fetch_assoc($getSumPay);
     $getSumPay = $getSumPay['sumPay'];
 
-    //total income
-    $all_incomes = $getSumLoan + $getSumPay;
+    // total income
+    $total_income = $getSumLoan + $getSumPay;
 
     //last month income from loan
     $getLastMonthLoan = mysqli_query($conn, "SELECT SUM(amount) AS lastMonthLoan FROM `loan` WHERE date > (NOW() - INTERVAL 1 MONTH)");
@@ -26,7 +26,7 @@
     $getLastMonthPay = mysqli_fetch_assoc($getLastMonthPay);
     $getLastMonthPay = $getLastMonthPay['lastMonthPay'];
     
-    $totalLastMonthIncome = $getLastMonthLoan + $getLastMonthPay;
+    $lastMonthIncome = $getLastMonthLoan + $getLastMonthPay;
 
 
 
@@ -36,7 +36,7 @@
     $getSumCost = $getSumCost['sumCost'];
     
     //summation of Product cost amount
-    $getProductCost = mysqli_query($conn, "SELECT SUM(supplier_price * quantity) AS sumProductCost FROM `products`");
+    $getProductCost = mysqli_query($conn, "SELECT SUM(supplier_price * primary_quantity) AS sumProductCost FROM `products`");
     $getProductCost = mysqli_fetch_assoc($getProductCost);
     $getProductCost = $getProductCost['sumProductCost'];
 
@@ -48,20 +48,18 @@
     $getLastMonthCost = $getLastMonthCost['lastMonthCost'];
 
     //last month product cost amount
-    $getLastMonthProductCost = mysqli_query($conn, "SELECT SUM(supplier_price * quantity) AS lastMonthProductCost FROM `products` WHERE created > (NOW() - INTERVAL 1 MONTH)");
+    $getLastMonthProductCost = mysqli_query($conn, "SELECT SUM(supplier_price * primary_quantity) AS lastMonthProductCost FROM `products` WHERE created > (NOW() - INTERVAL 1 MONTH)");
     $getLastMonthProductCost = mysqli_fetch_assoc($getLastMonthProductCost);
     $getLastMonthProductCost = $getLastMonthProductCost['lastMonthProductCost'];
 
     $lastMonthExpense = $getLastMonthCost + $getLastMonthProductCost;
 
+    $cash = $total_income - $all_expense;
+    $lastMonthCash = $lastMonthIncome - $lastMonthExpense;
 
-    $cash = ($getSumLoan - $all_expense) + $getSumPay;
-    $lastMonthCash = ($getLastMonthLoan - $lastMonthExpense) + $getLastMonthPay;
 
-
-    $total_profit = $all_expense - $getSumPay + $cash - $getSumLoan;
-
-    $month_total_profit = $lastMonthExpense - $getLastMonthPay + $lastMonthCash - $getLastMonthLoan;
+    $total_profit = $getSumPay - $all_expense;
+    $month_total_profit = $getLastMonthPay - $lastMonthExpense;
     
 ?>
 
@@ -70,8 +68,8 @@
         <div class="card bg-c-blue order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Total Invest</h6>
-                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span><?php echo $getSumLoan; ?></span></h2>
-                <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthLoan; ?></span></p>
+                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span><?php echo $getSumLoan ? $getSumLoan : '0'; ?></span></h2>
+                <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthLoan ? $getLastMonthLoan : '0'; ?></span></p>
             </div>
         </div>
     </div>
@@ -98,7 +96,7 @@
             <div class="card-block">
                 <h6 class="m-b-20">Cash</h6>
                 <h2 class="text-right"><i class="ti-wallet f-left"></i><span><?php echo $cash; ?></span></h2>
-                <p class="m-b-0">This Month<span class="f-right"><?php echo $totalLastMonthIncome - $getLastMonthCost; ?></span></p>
+                <p class="m-b-0">This Month<span class="f-right"><?php echo $lastMonthCash ? $lastMonthCash : '0'; ?></span></p>
             </div>
         </div>
     </div>

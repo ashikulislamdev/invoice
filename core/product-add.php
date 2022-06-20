@@ -15,7 +15,7 @@
         $product_details = trim(htmlentities(addslashes($_POST['product_details'])));
 
         if(!empty($name) && !empty($quantity) && !empty($quantity) && !empty($supplier_price) && !empty($sale_price) && !empty($voucher_no) && !empty($supplier_id) && !empty($warranty_days)){
-            $sql = "INSERT INTO `products`(`name`, `quantity`, `supplier_price`, `sale_price`, `voucher_no`, `supplier_id`, `warranty_days`, `product_details`) VALUES ('$name','$quantity', '$supplier_price', '$sale_price', '$voucher_no', '$supplier_id', '$warranty_days', '$product_details')";
+            $sql = "INSERT INTO `products`(`name`, `quantity`, `primary_quantity`, `supplier_price`, `sale_price`, `voucher_no`, `supplier_id`, `warranty_days`, `product_details`) VALUES ('$name','$quantity','$quantity', '$supplier_price', '$sale_price', '$voucher_no', '$supplier_id', '$warranty_days', '$product_details')";
             // die($sql);
             $runSql = mysqli_query($conn, $sql);
 			if($runSql == TRUE){
