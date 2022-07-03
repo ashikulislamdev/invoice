@@ -28,7 +28,7 @@ var rowCount = 1;
 function addNewRow(e){
     rowCount = rowCount + 1;
 
-    $("#addInvoiceItem").append('<tr id="invoiceItem' + rowCount + '"><td style="width: 220px"><select name="product_id[]" class="form-control invoiceProducts" id="productItem' + rowCount + '" data-row="invoiceItem'+rowCount+'" required><option selected disabled>-- Select Product --</option></select><input type="hidden" name="product_name[]" class="invoiceProductName"></td><td><input type="number" name="available_quantity[]" class="form-control invoiceAvailableQty" data-row="invoiceItem1" readonly></td><td><input type="number" name="product_quantity[]" class="form-control invoiceOrderQty" placeholder="0" data-row="invoiceItem'+rowCount+'" required></td><td style="width: 150px"><input name="product_rate[]" class="form-control invoiceProductSalePrice" readonly><input type="hidden" name="supplier_price[]"  class="invoiceProductSupplierPrice"></td><td style="width: 150px"><input class="form-control invoiceTotalPrice" name="total_price[]" readonly type="number"></td><td class="text-center"><button type="button" name="rowRemove" data-row="invoiceItem'+rowCount+'" class="btn btn-danger btn-sm rowRemove"><span class="fa fa-trash"></span></button></td></tr>');
+    $("#addInvoiceItem").append('<tr id="invoiceItem' + rowCount + '"><td style="width: 220px"><select name="product_id[]" class="form-control invoiceProducts" id="productItem' + rowCount + '" data-row="invoiceItem'+rowCount+'" required><option selected disabled>-- Select Product --</option></select><input type="hidden" name="product_name[]" class="invoiceProductName"></td><td><input type="number" name="available_quantity[]" class="form-control invoiceAvailableQty" data-row="invoiceItem1" readonly></td><td><input type="number" name="product_quantity[]" class="form-control invoiceOrderQty" placeholder="0" data-row="invoiceItem'+rowCount+'" required></td><td style="width: 150px"><input name="product_rate[]" class="form-control invoiceProductSalePrice" readonly><input type="hidden" name="supplier_price[]"  class="invoiceProductSupplierPrice"></td><td style="width: 150px"><input class="form-control invoiceTotalPrice" name="total_price[]" readonly type="number"><input class="form-control invoiceTotalSupplierPrice" name="total_supplier_price[]" readonly type="hidden"></td><td class="text-center"><button type="button" name="rowRemove" data-row="invoiceItem'+rowCount+'" class="btn btn-danger btn-sm rowRemove"><span class="fa fa-trash"></span></button></td></tr>');
     productList('productItem' + rowCount);
 }
 
@@ -110,6 +110,7 @@ $(document).on("keyup", ".invoiceOrderQty", function(a){
     var product = $('#' + selector + " .invoiceProducts").val();
     var available_quantity = $('#' + selector + " .invoiceAvailableQty").val();
     var price = $('#' + selector + " .invoiceProductSalePrice").val();
+    var supplier_price = $('#' + selector + " .invoiceProductSupplierPrice").val();
     var total = $('#' + selector + " .invoiceTotalPrice").val();
 
     var checkQry = available_quantity - quantity;
@@ -121,6 +122,8 @@ $(document).on("keyup", ".invoiceOrderQty", function(a){
             $('#' + selector + " .invoiceTotalPrice").val('');
         }else{
             var total_amount = price * quantity;
+            var supplier_total_amount = supplier_price * quantity;
+            $('#' + selector + " .invoiceTotalSupplierPrice").val(supplier_total_amount);
             $('#' + selector + " .invoiceTotalPrice").val(total_amount);
         }
         grandTotal();
@@ -196,7 +199,7 @@ function fullPaidAmount(){
 // Invoice Submit
 $("#invoice_submit").on("click", function(){
     var form = $("#addInvoice").serialize();
-    console.log(form);
+    // console.log(form);
 
     $(".loader_overlay").show();
     $.ajax({

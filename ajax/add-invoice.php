@@ -12,8 +12,15 @@
 
         if(!empty($customer_id) || !empty($invoice_date) || !empty($grand_total)){
 
+            // get total supplier price
+            $productCount = count(array_unique($_POST['product_id']));
+            $total_supplier_price = 0;
+            for ($i=0; $i < $productCount; $i++) {
+                $total_supplier_price += $_POST['total_supplier_price'][$i];
+            }
 
-            $sql = "INSERT INTO `invoices` (`customer_id`, `discount`, `pay`, `due`, `total`, `created`) VALUES('$customer_id', '$total_discount', '$paid_amount', '$due_amount', '$grand_total', '$invoice_date')";
+
+            $sql = "INSERT INTO `invoices` (`customer_id`, `discount`, `pay`, `due`, `total`, `total_supplier_price`, `created`) VALUES('$customer_id', '$total_discount', '$paid_amount', '$due_amount', '$grand_total', '$total_supplier_price', '$invoice_date')";
             $runSql = mysqli_query($conn, $sql);
             if($runSql){
 
@@ -28,7 +35,6 @@
 				}
 
                 
-                $productCount = count($_POST['product_id']);
                 $runSql2 = '';
 
 
@@ -36,6 +42,7 @@
                     $product_id = $_POST['product_id'][$i];
                     $quantity = $_POST['product_quantity'][$i];
                     $total = $_POST['total_price'][$i];
+                    $total_supplier_price = $_POST['total_supplier_price'][$i];
                     
                     
                     $selectSql = "SELECT `quantity` FROM `products` WHERE `id` = $product_id ORDER BY `id` LIMIT 1";
@@ -47,7 +54,7 @@
                             $updateSql = "UPDATE `products` SET `quantity` = '$product_quantity' WHERE `id` = '$product_id'";
                             $runUpdateSql = mysqli_query($conn, $updateSql);
                             if($runUpdateSql){
-                                $sql2 = "INSERT INTO `invoice_item` (`invoice_id`, `product_id`, `quantity`, `total`) VALUES('$invoice_id', '$product_id', '$quantity', '$total')";
+                                $sql2 = "INSERT INTO `invoice_item` (`invoice_id`, `product_id`, `quantity`, `total`, `total_supplier_price`) VALUES('$invoice_id', '$product_id', '$quantity', '$total', '$total_supplier_price')";
                                 $runSql2 = mysqli_query($conn, $sql2);
                             }
                         }

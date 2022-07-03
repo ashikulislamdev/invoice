@@ -50,7 +50,7 @@
                     <div class="form-group row">
                         <label for="invoice_date" class="col-sm-2 col-form-label">Date <i class="text-danger">*</i></label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" autocomplete="off" required="" id="invoice_date" name="invoice_date" placeholder="yyyy-mm-dd">
+                            <input type="date" class="form-control" autocomplete="off" required="" id="invoice_date" name="invoice_date" value="<?php echo date('d-m-Y') ?>" placeholder="yyyy-mm-dd">
                         </div>
                     </div>  
 
@@ -90,6 +90,7 @@
                                     
                                     <td style="width: 150px">
                                         <input class="form-control invoiceTotalPrice" name="total_price[]" readonly type="number">
+                                        <input class="form-control invoiceTotalSupplierPrice" name="total_supplier_price[]" readonly type="hidden">
                                     </td>
 
                                     <td class="text-center">                                            

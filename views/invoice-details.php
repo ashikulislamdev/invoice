@@ -108,8 +108,8 @@
                                 ?>
                             </td>
                             <td><?php echo $value['quantity']; ?></td>
-                            <td>TK<?php echo ($value['total'] / $value['quantity']); ?></td>
-                            <td>TK <?php echo $value['total'] ?></td>
+                            <td>TK <?php echo round(($value['total'] / $value['quantity']), 2); ?></td>
+                            <td>TK <?php echo round($value['total'], 2) ?></td>
                         </tr>	
                         <?php
                                 }
