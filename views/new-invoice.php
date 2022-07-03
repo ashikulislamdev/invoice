@@ -50,7 +50,7 @@
                     <div class="form-group row">
                         <label for="invoice_date" class="col-sm-2 col-form-label">Date <i class="text-danger">*</i></label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" autocomplete="off" required="" id="invoice_date" name="invoice_date" value="<?php echo date('d-m-Y') ?>" placeholder="yyyy-mm-dd">
+                            <input type="date" class="form-control" autocomplete="off" required="" id="invoice_date" name="invoice_date" value="<?php echo date("Y-m-d") ?>" placeholder="yyyy-mm-dd">
                         </div>
                     </div>  
 
