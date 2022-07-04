@@ -80,7 +80,12 @@
     $getSumSuppPrice = mysqli_fetch_assoc($getSumSuppPrice);
     $getSumSuppPrice = $getSumSuppPrice['sumSuppPrice'];
 
-    $main_profit = $getSumPay - $getSumSuppPrice - $getSumWidrw;
+    // Total of Transport Cost from cost table
+    $transportCost = mysqli_query($conn, "SELECT SUM(amount) AS transportCost FROM `cost` WHERE cost_type='Transport Cost'");
+    $transportCost = mysqli_fetch_assoc($transportCost);
+    $transportCost = $transportCost['transportCost'];
+
+    $main_profit = $getSumPay - $getSumSuppPrice - $getSumWidrw - $transportCost;
 
     $getLastMonthSuppPrice = mysqli_query($conn, "SELECT SUM(total_supplier_price) AS sumSuppPrice FROM `invoices` WHERE created > (NOW() - INTERVAL 1 MONTH)");
     $getLastMonthSuppPrice = mysqli_fetch_assoc($getLastMonthSuppPrice);

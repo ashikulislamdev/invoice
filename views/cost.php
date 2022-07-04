@@ -96,6 +96,7 @@
                                                             <option value="others">others</option>
                                                             <option value="Profit Withdrawal">Profit Withdrawal</option>                                                            
                                                             <option value="Loan Pay">Loan Pay</option>
+                                                            <option value="Transport Cost">Transport Cost</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -180,6 +181,7 @@
                                         <option value="others">others</option>
                                         <option value="Profit Withdrawal">Profit Withdrawal</option>                                                            
                                         <option value="Loan Pay">Loan Pay</option>
+                                        <option value="Transport Cost">Transport Cost</option>
                                 </select>
                             </div>
                             <div class="form-group">
