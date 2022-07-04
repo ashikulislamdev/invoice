@@ -25,19 +25,39 @@
     $getLastMonthPay = $getLastMonthPay['lastMonthPay'];
     
 
-    //summation of cost amount
+    //summation of product supplier price amount
+    $totalProductSuppPrice = mysqli_query($conn, "SELECT SUM(supplier_price) AS sumSuppPrice FROM `products`");
+    $totalProductSuppPrice = mysqli_fetch_assoc($totalProductSuppPrice);
+    $totalProductSuppPrice = $totalProductSuppPrice['sumSuppPrice'];
+
+    //last month product supplier price amount
+    $lastMonthSuppPrice = mysqli_query($conn, "SELECT SUM(supplier_price) AS lastMonthSuppPrice FROM `products` WHERE created > (NOW() - INTERVAL 1 MONTH)");
+    $lastMonthSuppPrice = mysqli_fetch_assoc($lastMonthSuppPrice);
+    $lastMonthSuppPrice = $lastMonthSuppPrice['lastMonthSuppPrice'];
+
+    
+    //summation of others cost amount
     $getSumCost = mysqli_query($conn, "SELECT SUM(amount) AS sumCost FROM `cost` WHERE cost_type='others'");
     $getSumCost = mysqli_fetch_assoc($getSumCost);
     $getSumCost = $getSumCost['sumCost'];
     
-    //last month cost amount
-    $getLastMonthCost = mysqli_query($conn, "SELECT SUM(amount) AS lastMonthCost FROM `cost` WHERE cost_type='others' && date > (NOW() - INTERVAL 1 MONTH)");
+    //last month others cost amount
+    $getLastMonthCost = mysqli_query($conn, "SELECT SUM(amount) AS lastMonthCost FROM `cost` WHERE cost_type='others' && cost_date > (NOW() - INTERVAL 1 MONTH)");
     $getLastMonthCost = mysqli_fetch_assoc($getLastMonthCost);
     $getLastMonthCost = $getLastMonthCost['lastMonthCost'];
 
-    //summation of Product cost amount
-    $cash = $getSumPay - $getSumCost;
-    $lastMonthCash = $getLastMonthPay - $getLastMonthCost;
+    $totalExpenses = $totalProductSuppPrice + $getSumCost;
+    $lastMonthExpenses = $lastMonthSuppPrice + $getLastMonthCost;
+
+    //summation of Profit Withdrawal cost amount
+    $getSumWidrw = mysqli_query($conn, "SELECT SUM(amount) AS sumWidrw FROM `cost` WHERE cost_type='Profit Withdrawal'");
+    $getSumWidrw = mysqli_fetch_assoc($getSumWidrw);
+    $getSumWidrw = $getSumWidrw['sumWidrw'];
+    
+    //last month Profit Withdrawal cost amount
+    $getLastMonthWidrw = mysqli_query($conn, "SELECT SUM(amount) AS lastMonthWidrw FROM `cost` WHERE cost_type='Profit Withdrawal' && cost_date > (NOW() - INTERVAL 1 MONTH)");
+    $getLastMonthWidrw = mysqli_fetch_assoc($getLastMonthWidrw);
+    $getLastMonthWidrw = $getLastMonthWidrw['lastMonthWidrw'];
 
     
     //summation of pay amount from invoices
@@ -46,13 +66,13 @@
     $getSumSuppPrice = mysqli_fetch_assoc($getSumSuppPrice);
     $getSumSuppPrice = $getSumSuppPrice['sumSuppPrice'];
 
-    $main_profit = $getSumPay - $getSumSuppPrice;
+    $main_profit = $getSumPay - $getSumSuppPrice - $getSumWidrw;
 
     $getLastMonthSuppPrice = mysqli_query($conn, "SELECT SUM(total_supplier_price) AS sumSuppPrice FROM `invoices` WHERE created > (NOW() - INTERVAL 1 MONTH)");
     $getLastMonthSuppPrice = mysqli_fetch_assoc($getLastMonthSuppPrice);
     $getLastMonthSuppPrice = $getLastMonthSuppPrice['sumSuppPrice'];
 
-    $LastMonthMainProfit = $getLastMonthPay - $getLastMonthSuppPrice;
+    $LastMonthMainProfit = $getLastMonthPay - $getLastMonthSuppPrice - $getLastMonthWidrw;
     
 ?>
 
@@ -79,8 +99,8 @@
         <div class="card bg-c-green order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Total Expense</h6>
-                <h2 class="text-right"><i class="ti-tag f-left"></i><span><?php echo $getSumCost ? $getSumCost : '0'; ?></span></h2>
-                <p class="m-b-0">This Month<span class="f-right"><?php  echo $getLastMonthCost ? $getLastMonthCost : '0'; ?></span></p>
+                <h2 class="text-right"><i class="ti-tag f-left"></i><span><?php echo $totalExpenses ? $totalExpenses: '0'; ?></span></h2>
+                <p class="m-b-0">This Month<span class="f-right"><?php  echo $lastMonthExpenses ? $lastMonthExpenses : '0'; ?></span></p>
             </div>
         </div>
     </div>
@@ -88,8 +108,8 @@
         <div class="card bg-c-pink order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Cash</h6>
-                <h2 class="text-right"><i class="ti-wallet f-left"></i><span><?php echo $cash; ?></span></h2>
-                <p class="m-b-0">This Month<span class="f-right"><?php echo $lastMonthCash ? $lastMonthCash : '0'; ?></span></p>
+                <h2 class="text-right"><i class="ti-wallet f-left"></i><span><?php echo $getSumLoan - $totalExpenses ? $getSumLoan - $totalExpenses : '0'; ?></span></h2>
+                <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthLoan - $lastMonthExpenses ? $getLastMonthLoan - $lastMonthExpenses : '0'; ?></span></p>
             </div>
         </div>
     </div>

@@ -93,3 +93,7 @@ ALTER TABLE `invoice_item` ADD `total_supplier_price` INT NOT NULL DEFAULT '0' A
 
 # add new column
 ALTER TABLE `cost` ADD `cost_type` VARCHAR(100) NOT NULL AFTER `amount`;
+
+
+change column from cost table
+ALTER TABLE `cost` CHANGE `date` `cost_date` VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;

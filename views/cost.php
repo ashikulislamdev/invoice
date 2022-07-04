@@ -30,7 +30,7 @@
 							<td><?php echo $value['title']; ?></td>
 							<td><?php echo $value['amount']; ?> TK</td>
                             <td><?php echo $value['cost_type']; ?> </td>
-							<td><?php echo $value['date']; ?></td>
+							<td><?php echo $value['cost_date']; ?></td>
 							<td class="action-col">
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
 								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a>
@@ -55,7 +55,7 @@
                                         <hr>
                                         <p>Cost Type: <b><?php echo $value['cost_type']; ?></b></p>
                                         <hr>
-                                        <p>Date: <b><?php echo $value['date']; ?></b></p>
+                                        <p>Date: <b><?php echo $value['cost_date']; ?></b></p>
                                         <hr>
                                         <p>Note: <b><?php echo $value['note']; ?></b></p>
                                     </div>
@@ -92,14 +92,15 @@
                                                     <div class="form-group">
                                                         <label for="cost_type" class="col-form-label">Cost Type:</label>
                                                         <select class="form-control" name="cost_type" required>
-                                                            <option selected disabled>-- Select Cost Type --</option>
-                                                            <option value="Profit Withdrawal">Profit Withdrawal</option>                                                            
+                                                            <option selected disabled>-- Select Cost Type --</option>                                                            
                                                             <option value="others">others</option>
+                                                            <option value="Profit Withdrawal">Profit Withdrawal</option>                                                            
+                                                            <option value="Loan Pay">Loan Pay</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="date" class="col-form-label">Date:</label>
-                                                        <input type="date" class="form-control" name="date" value="<?php echo $value['date']; ?>" placeholder="Date" required>
+                                                        <label for="cost_date" class="col-form-label">Date:</label>
+                                                        <input type="date" class="form-control" name="cost_date" value="<?php echo $value['cost_date']; ?>" placeholder="Date" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="note" class="col-form-label">Note:</label>
@@ -175,14 +176,15 @@
                             <div class="form-group">
                                 <label for="cost_type" class="col-form-label">Cost Type:</label>
                                 <select class="form-control" name="cost_type" required>
-                                    <option selected disabled>-- Select Cost Type --</option>
-                                    <option value="Profit Withdrawal">Profit Withdrawal</option>                                                            
-                                    <option value="others">others</option>
+                                    <option selected disabled>-- Select Cost Type --</option>                                                            
+                                        <option value="others">others</option>
+                                        <option value="Profit Withdrawal">Profit Withdrawal</option>                                                            
+                                        <option value="Loan Pay">Loan Pay</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="date" class="col-form-label">Date:</label>
-                                <input type="date" class="form-control" name="date" placeholder="Date" required>
+                                <input type="date" class="form-control" name="cost_date" placeholder="Date" required>
                             </div>
                             <div class="form-group">
                                 <label for="note" class="col-form-label">Note:</label>
