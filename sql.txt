@@ -84,7 +84,7 @@ CREATE TABLE `invoice_item` (
 ALTER TABLE `products` ADD `product_details` TEXT NOT NULL AFTER `warranty_days`;
 
 //supplier contact parson
-ALTER TABLE `suppliers` CHANGE `shop_name` `contact_parson` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+ALTER TABLE `suppliers` CHANGE `shop_name` `shop_name` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
 
 # add new column
 ALTER TABLE `invoices` ADD `total_supplier_price` INT NOT NULL DEFAULT '0' AFTER `total`;
@@ -97,3 +97,8 @@ ALTER TABLE `cost` ADD `cost_type` VARCHAR(100) NOT NULL AFTER `amount`;
 
 change column from cost table
 ALTER TABLE `cost` CHANGE `date` `cost_date` VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+
+
+# column change
+ALTER TABLE `suppliers` CHANGE `contact_parson` `shop_name` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;

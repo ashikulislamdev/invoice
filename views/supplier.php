@@ -28,7 +28,7 @@
 							<td><?php echo ++$key; ?></td>
 							<td><?php echo $value['supplier_name']; ?></td>
 							<td><?php echo $value['supplier_phone']; ?></td>
-							<td><?php echo $value['contact_parson']; ?></td>
+							<td><?php echo $value['shop_name']; ?></td>
 							<td class="action-col">
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
 								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a>
@@ -51,7 +51,7 @@
                                         <hr>
                                         <p>Supplier Phone: <b><?php echo $value['supplier_phone']; ?></b></p>
                                         <hr>
-                                        <p>Contact Parson: <b><?php echo $value['contact_parson']; ?></b></p>
+                                        <p>Contact Parson: <b><?php echo $value['shop_name']; ?></b></p>
                                         <hr>
                                         <p>Address: <b><?php echo $value['address']; ?></b></p>
                                     </div>
@@ -86,8 +86,8 @@
                                                         <input type="text" class="form-control" name="supplier_phone" value="<?php echo $value['supplier_phone']; ?>" placeholder="Enter supplier phone" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="contact_parson" class="col-form-label">Contact Parson:</label>
-                                                        <input type="text" class="form-control" name="contact_parson" value="<?php echo $value['contact_parson']; ?>" placeholder="Enter Contact Parson" required>
+                                                        <label for="shop_name" class="col-form-label">Contact Parson:</label>
+                                                        <input type="text" class="form-control" name="shop_name" value="<?php echo $value['shop_name']; ?>" placeholder="Enter Contact Parson" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="address" class="col-form-label">Address:</label>
@@ -161,8 +161,8 @@
                                 <input type="text" class="form-control" name="supplier_phone" placeholder="Enter supplier phone" required>
                             </div>
                             <div class="form-group">
-                                <label for="contact_parson" class="col-form-label">Contact Parson:</label>
-                                <input type="text" class="form-control" name="contact_parson" placeholder="Enter Contact Parson" required>
+                                <label for="shop_name" class="col-form-label">Contact Parson:</label>
+                                <input type="text" class="form-control" name="shop_name" placeholder="Enter Contact Parson" required>
                             </div>
                             <div class="form-group">
                                 <label for="address" class="col-form-label">Address:</label>
