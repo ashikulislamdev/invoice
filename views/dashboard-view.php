@@ -8,6 +8,13 @@
     $getSumLoan = mysqli_fetch_assoc($getSumLoan);
     $getSumLoan = $getSumLoan['sumLoan'];
 
+    //summation of Profit Withdrawal cost amount
+    $loanPay = mysqli_query($conn, "SELECT SUM(amount) AS loanPay FROM `cost` WHERE cost_type='Loan Pay'");
+    $loanPay = mysqli_fetch_assoc($loanPay);
+    $loanPay = $loanPay['loanPay'];
+
+    $currentLoan = $getSumLoan - $loanPay;
+
     //last month income from loan
     $getLastMonthLoan = mysqli_query($conn, "SELECT SUM(amount) AS lastMonthLoan FROM `loan` WHERE date > (NOW() - INTERVAL 1 MONTH)");
     $getLastMonthLoan = mysqli_fetch_assoc($getLastMonthLoan);
@@ -26,7 +33,7 @@
     
 
     //summation of product supplier price amount
-    $totalProductSuppPrice = mysqli_query($conn, "SELECT SUM(supplier_price) AS sumSuppPrice FROM `products`");
+    $totalProductSuppPrice = mysqli_query($conn, "SELECT SUM(supplier_price * primary_quantity) AS sumSuppPrice FROM `products`");
     $totalProductSuppPrice = mysqli_fetch_assoc($totalProductSuppPrice);
     $totalProductSuppPrice = $totalProductSuppPrice['sumSuppPrice'];
 
@@ -59,6 +66,13 @@
     $getLastMonthWidrw = mysqli_fetch_assoc($getLastMonthWidrw);
     $getLastMonthWidrw = $getLastMonthWidrw['lastMonthWidrw'];
 
+    //summation of others cost amount
+    $totalCost = mysqli_query($conn, "SELECT SUM(amount) AS totalCost FROM `cost`");
+    $totalCost = mysqli_fetch_assoc($totalCost);
+    $totalCost = $totalCost['totalCost'];
+
+    $currentCash = ($getSumLoan + $getSumPay) - ($totalProductSuppPrice + $totalCost);
+
     
     //summation of pay amount from invoices
     $getSumProfitQry = "SELECT SUM(total_supplier_price) AS sumSuppPrice FROM `invoices`";
@@ -81,7 +95,7 @@
         <div class="card bg-c-blue order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Total Loan</h6>
-                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span><?php echo $getSumLoan ? $getSumLoan : '0'; ?></span></h2>
+                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span><?php echo $currentLoan ? $currentLoan : '0'; ?></span></h2>
                 <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthLoan ? $getLastMonthLoan : '0'; ?></span></p>
             </div>
         </div>
@@ -108,7 +122,7 @@
         <div class="card bg-c-pink order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Cash</h6>
-                <h2 class="text-right"><i class="ti-wallet f-left"></i><span><?php echo $getSumLoan - $totalExpenses ? $getSumLoan - $totalExpenses : '0'; ?></span></h2>
+                <h2 class="text-right"><i class="ti-wallet f-left"></i><span><?php echo $currentCash ? $currentCash : '0'; ?></span></h2>
                 <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthLoan - $lastMonthExpenses ? $getLastMonthLoan - $lastMonthExpenses : '0'; ?></span></p>
             </div>
         </div>
