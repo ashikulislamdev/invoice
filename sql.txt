@@ -89,3 +89,7 @@ ALTER TABLE `suppliers` CHANGE `shop_name` `contact_parson` VARCHAR(255) CHARACT
 # add new column
 ALTER TABLE `invoices` ADD `total_supplier_price` INT NOT NULL DEFAULT '0' AFTER `total`;
 ALTER TABLE `invoice_item` ADD `total_supplier_price` INT NOT NULL DEFAULT '0' AFTER `total`;
+
+
+# add new column
+ALTER TABLE `cost` ADD `cost_type` VARCHAR(100) NOT NULL AFTER `amount`;

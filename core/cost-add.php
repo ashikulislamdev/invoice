@@ -3,9 +3,10 @@
     include 'session.php';
 
 
-    if(isset($_POST['title']) && isset($_POST['amount']) && isset($_POST['date']) && isset($_POST['note'])){
+    if(isset($_POST['title']) && isset($_POST['amount']) && isset($_POST['cost_type']) && isset($_POST['date']) && isset($_POST['note'])){
         $title = trim(htmlentities(addslashes($_POST['title'])));
         $amount = trim(htmlentities(addslashes($_POST['amount'])));
+        $cost_type = trim(htmlentities(addslashes($_POST['cost_type'])));
         $date = trim(htmlentities(addslashes($_POST['date'])));
         $note = trim(htmlentities(addslashes($_POST['note'])));
 
@@ -13,7 +14,7 @@
 
             if($amount < 0){ die('you cannot input less than 0 value'); }
 
-            $sql = "INSERT INTO `cost`(`title`, `amount`, `date`, `note`) VALUES ('$title','$amount','$date', '$note')";
+            $sql = "INSERT INTO `cost`(`title`, `amount`, `cost_type`, `date`, `note`) VALUES ('$title','$amount','$cost_type','$date', '$note')";
             // die($sql);
             $runSql = mysqli_query($conn, $sql);
 			if($runSql == TRUE){

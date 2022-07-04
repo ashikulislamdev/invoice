@@ -3,10 +3,11 @@
     include 'session.php';
 
 
-    if(isset($_POST['cost_edit_id']) && isset($_POST['title']) && isset($_POST['amount']) && isset($_POST['date']) && isset($_POST['note'])){
+    if(isset($_POST['cost_edit_id']) && isset($_POST['title']) && isset($_POST['amount']) && isset($_POST['cost_type']) && isset($_POST['date']) && isset($_POST['note'])){
         $cost_edit_id = trim(htmlentities(addslashes($_POST['cost_edit_id'])));
         $title = trim(htmlentities(addslashes($_POST['title'])));
         $amount = trim(htmlentities(addslashes($_POST['amount'])));
+        $cost_type = trim(htmlentities(addslashes($_POST['cost_type'])));
         $date = trim(htmlentities(addslashes($_POST['date'])));
         $note = trim(htmlentities(addslashes($_POST['note'])));
 
@@ -15,7 +16,7 @@
             if($amount < 0){ die('you cannot input less than 0 value'); }
 
             
-            $sql = "UPDATE `cost` SET `title` = '$title', `amount` = '$amount', `date` = '$date', `note` = '$note' WHERE `id` = '$cost_edit_id'";
+            $sql = "UPDATE `cost` SET `title` = '$title', `amount` = '$amount', `cost_type` = '$cost_type', `date` = '$date', `note` = '$note' WHERE `id` = '$cost_edit_id'";
             // die($sql);
             $runSql = mysqli_query($conn, $sql);
 			if($runSql == TRUE){

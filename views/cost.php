@@ -15,6 +15,7 @@
 							<th class="text-center">SL No</th>
 							<th class="text-center">Title</th>
 							<th class="text-center">Amount</th>
+							<th class="text-center">Cost Type</th>
 							<th class="text-center">Date</th>
 							<th class="text-center">Action</th>
 						</tr>
@@ -28,6 +29,7 @@
 							<td><?php echo ++$key; ?></td>
 							<td><?php echo $value['title']; ?></td>
 							<td><?php echo $value['amount']; ?> TK</td>
+                            <td><?php echo $value['cost_type']; ?> </td>
 							<td><?php echo $value['date']; ?></td>
 							<td class="action-col">
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
@@ -50,6 +52,8 @@
                                         <p>Title: <b><?php echo $value['title']; ?></b></p>
                                         <hr>
                                         <p>Amount: <b><?php echo $value['amount']; ?> TK</b></p>
+                                        <hr>
+                                        <p>Cost Type: <b><?php echo $value['cost_type']; ?></b></p>
                                         <hr>
                                         <p>Date: <b><?php echo $value['date']; ?></b></p>
                                         <hr>
@@ -84,6 +88,14 @@
                                                     <div class="form-group">
                                                         <label for="amount" class="col-form-label">Amount:</label>
                                                         <input type="number" class="form-control" name="amount" value="<?php echo $value['amount']; ?>" placeholder="Enter  Amount (number)" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="cost_type" class="col-form-label">Cost Type:</label>
+                                                        <select class="form-control" name="cost_type" required>
+                                                            <option selected disabled>-- Select Cost Type --</option>
+                                                            <option value="Profit Withdrawal">Profit Withdrawal</option>                                                            
+                                                            <option value="others">others</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="date" class="col-form-label">Date:</label>
@@ -159,6 +171,14 @@
                             <div class="form-group">
                                 <label for="amount" class="col-form-label">Amount:</label>
                                 <input type="number" class="form-control" name="amount" placeholder="Enter  Amount (number)" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cost_type" class="col-form-label">Cost Type:</label>
+                                <select class="form-control" name="cost_type" required>
+                                    <option selected disabled>-- Select Cost Type --</option>
+                                    <option value="Profit Withdrawal">Profit Withdrawal</option>                                                            
+                                    <option value="others">others</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="date" class="col-form-label">Date:</label>
