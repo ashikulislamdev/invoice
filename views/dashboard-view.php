@@ -38,7 +38,7 @@
     $totalProductSuppPrice = $totalProductSuppPrice['sumSuppPrice'];
 
     //last month product supplier price amount
-    $lastMonthSuppPrice = mysqli_query($conn, "SELECT SUM(supplier_price) AS lastMonthSuppPrice FROM `products` WHERE created > (NOW() - INTERVAL 1 MONTH)");
+    $lastMonthSuppPrice = mysqli_query($conn, "SELECT SUM(supplier_price * primary_quantity) AS lastMonthSuppPrice FROM `products` WHERE created > (NOW() - INTERVAL 1 MONTH)");
     $lastMonthSuppPrice = mysqli_fetch_assoc($lastMonthSuppPrice);
     $lastMonthSuppPrice = $lastMonthSuppPrice['lastMonthSuppPrice'];
 
@@ -85,13 +85,18 @@
     $transportCost = mysqli_fetch_assoc($transportCost);
     $transportCost = $transportCost['transportCost'];
 
+    // Total of Transport Cost from cost table
+    $lastMntTransportCost = mysqli_query($conn, "SELECT SUM(amount) AS transportCost FROM `cost` WHERE cost_type='Transport Cost' && cost_date > (NOW() - INTERVAL 1 MONTH)");
+    $lastMntTransportCost = mysqli_fetch_assoc($lastMntTransportCost);
+    $lastMntTransportCost = $lastMntTransportCost['transportCost'];
+
     $main_profit = $getSumPay - $getSumSuppPrice - $getSumWidrw - $transportCost;
 
     $getLastMonthSuppPrice = mysqli_query($conn, "SELECT SUM(total_supplier_price) AS sumSuppPrice FROM `invoices` WHERE created > (NOW() - INTERVAL 1 MONTH)");
     $getLastMonthSuppPrice = mysqli_fetch_assoc($getLastMonthSuppPrice);
     $getLastMonthSuppPrice = $getLastMonthSuppPrice['sumSuppPrice'];
 
-    $LastMonthMainProfit = $getLastMonthPay - $getLastMonthSuppPrice - $getLastMonthWidrw;
+    $LastMonthMainProfit = $getLastMonthPay - $getLastMonthSuppPrice - $getLastMonthWidrw - $lastMntTransportCost;
     
 ?>
 
