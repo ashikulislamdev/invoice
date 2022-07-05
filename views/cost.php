@@ -92,11 +92,19 @@
                                                     <div class="form-group">
                                                         <label for="cost_type" class="col-form-label">Cost Type:</label>
                                                         <select class="form-control" name="cost_type" required>
-                                                            <option selected disabled>-- Select Cost Type --</option>                                                            
-                                                            <option value="others">others</option>
-                                                            <option value="Profit Withdrawal">Profit Withdrawal</option>                                                            
-                                                            <option value="Loan Pay">Loan Pay</option>
-                                                            <option value="Transport Cost">Transport Cost</option>
+
+                                                            <?php
+                                                                $cost_edit_id = $value['cost_edit_id'];
+                                                                if(isset($costData)){
+                                                                    foreach ($costData as $cost) {
+                                                                        $cost_type_find = null;
+                                                                        if($cost_edit_id == $cost['id'] ){
+                                                                            $cost_type_find = 'selected';
+                                                                        }
+                                                                        echo "<option value='".$cost['id']."' ".$cost_type_find.">".$cost['cost_type']."</option>";
+                                                                    }
+                                                                }
+                                                            ?>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
