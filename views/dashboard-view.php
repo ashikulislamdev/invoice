@@ -81,7 +81,7 @@
 
     
     //summation of pay amount from invoices
-    $getSumProfitQry = "SELECT SUM(total_supplier_price) AS sumSuppPrice FROM `invoices`";
+    $getSumProfitQry = "SELECT SUM(total_supplier_price) AS sumSuppPrice FROM `invoices` where pay != 0";
     $getSumSuppPrice = mysqli_query($conn, $getSumProfitQry);
     $getSumSuppPrice = mysqli_fetch_assoc($getSumSuppPrice);
     $getSumSuppPrice = $getSumSuppPrice['sumSuppPrice'];
@@ -98,7 +98,7 @@
 
     $main_profit = $getSumPay - $getSumSuppPrice - $getSumWidrw - $transportCost;
 
-    $getLastMonthSuppPrice = mysqli_query($conn, "SELECT SUM(total_supplier_price) AS sumSuppPrice FROM `invoices` WHERE created > (NOW() - INTERVAL 1 MONTH)");
+    $getLastMonthSuppPrice = mysqli_query($conn, "SELECT SUM(total_supplier_price) AS sumSuppPrice FROM `invoices` WHERE pay != 0 AND created > (NOW() - INTERVAL 1 MONTH)");
     $getLastMonthSuppPrice = mysqli_fetch_assoc($getLastMonthSuppPrice);
     $getLastMonthSuppPrice = $getLastMonthSuppPrice['sumSuppPrice'];
 
@@ -106,9 +106,8 @@
     
 ?>
 
-<h1 class="mt-5 py-5 text-center bg-danger text-white">Hello, Rashed Vaiya. How are you..?</h1>
 
-<div class="row d-none">
+<div class="row">
     <div class="col-md-6 col-xl-3">
         <div class="card bg-c-pink order-card">
             <div class="card-block">
