@@ -102,3 +102,7 @@ ALTER TABLE `cost` CHANGE `date` `cost_date` VARCHAR(20) CHARACTER SET utf8mb4 C
 
 # column change
 ALTER TABLE `suppliers` CHANGE `contact_parson` `shop_name` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+
+# add new column in loan table
+ALTER TABLE `loan` ADD `type` VARCHAR(255) NOT NULL DEFAULT 'Loan' AFTER `note`;

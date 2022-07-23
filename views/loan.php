@@ -16,6 +16,7 @@
 							<th class="text-center">Title</th>
 							<th class="text-center">Amount</th>
 							<th class="text-center">Date</th>
+							<th class="text-center">Type</th>
 							<th class="text-center">Action</th>
 						</tr>
 					</thead>
@@ -29,6 +30,7 @@
 							<td><?php echo $value['title']; ?></td>
 							<td><?php echo $value['amount']; ?> TK</td>
 							<td><?php echo $value['date']; ?></td>
+							<td><?php echo $value['type']; ?></td>
 							<td class="action-col">
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
 								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a>
@@ -159,6 +161,13 @@
                             <div class="form-group">
                                 <label for="amount" class="col-form-label">Amount:</label>
                                 <input type="number" class="form-control" name="amount" placeholder="Enter Amount (number)" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="type" class="col-form-label">Type:</label>
+                                <select class="form-control" name="type" required>                                                         
+                                        <option value="Loan" selected>Loan</option>
+                                        <option value="Invest">Invest</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="date" class="col-form-label">Date:</label>

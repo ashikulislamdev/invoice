@@ -3,10 +3,16 @@
     if(!isset($current_user_id)){die('Unauthorized Error');}
 
     //summation of loan amount from loan
-    $getSumLoanQry = "SELECT SUM(amount) AS sumLoan FROM `loan`";
+    $getSumLoanQry = "SELECT SUM(amount) AS sumLoan FROM `loan` WHERE `type` = 'Loan'";
     $getSumLoan = mysqli_query($conn, $getSumLoanQry);
     $getSumLoan = mysqli_fetch_assoc($getSumLoan);
     $getSumLoan = $getSumLoan['sumLoan'];
+
+    //summation of Invest amount from Invest
+    $getSumInvestQry = "SELECT SUM(amount) AS sumInvest FROM `loan` WHERE `type` = 'Invest'";
+    $getSumInvest = mysqli_query($conn, $getSumInvestQry);
+    $getSumInvest = mysqli_fetch_assoc($getSumInvest);
+    $getSumInvest = $getSumInvest['sumInvest'];
 
     //summation of Profit Withdrawal cost amount
     $loanPay = mysqli_query($conn, "SELECT SUM(amount) AS loanPay FROM `cost` WHERE cost_type='Loan Pay'");
@@ -71,7 +77,7 @@
     $totalCost = mysqli_fetch_assoc($totalCost);
     $totalCost = $totalCost['totalCost'];
 
-    $currentCash = ($getSumLoan + $getSumPay) - ($totalProductSuppPrice + $totalCost);
+    $currentCash = ($getSumLoan + $getSumPay + $getSumInvest) - ($totalProductSuppPrice + $totalCost);
 
     
     //summation of pay amount from invoices
@@ -100,7 +106,19 @@
     
 ?>
 
-<div class="row">
+<h1 class="mt-5 py-5 text-center bg-danger text-white">Hello, Rashed Vaiya. How are you..?</h1>
+
+<div class="row d-none">
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-pink order-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Total Invest</h6>
+                <h2 class="text-right"><i class="bx bx-briefcase f-left"></i><span><?php echo $getSumInvest ? $getSumInvest : '0'; ?></span></h2>
+                <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthLoan ? $getLastMonthLoan : '0'; ?></span></p>
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-6 col-xl-3">
         <div class="card bg-c-blue order-card">
             <div class="card-block">
@@ -142,7 +160,7 @@
         <div class="card bg-c-green order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Profit</h6>
-                <h2 class="text-right"><i class="ti-wallet f-left"></i><span><?php echo $main_profit; ?></span></h2>
+                <h2 class="text-right"><i class="bx bxl-product-hunt f-left"></i><span><?php echo $main_profit; ?></span></h2>
                 <p class="m-b-0">This Month<span class="f-right"><?php echo $LastMonthMainProfit; ?></span></p>
             </div>
         </div>
