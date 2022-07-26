@@ -18,6 +18,7 @@
 							<th class="text-center">Invoice ID</th>
 							<th class="text-center">Customer Name</th>
 							<th class="text-center">Amount</th>
+							<th class="text-center">Due</th>
 							<th class="text-center">Date</th>
 							<th class="text-center">Action</th>
 						</tr>
@@ -51,14 +52,53 @@
 								?>
 							</td>
 							<td><?php echo $value['total']; ?> TK</td>
+							<td><?php echo $value['due']; ?> TK</td>
 							<td><?php echo date('d M Y', strtotime($value['created'])) ?></td>
 							<td class="action-col">
 								<a href="invoice-details.php?invoice_id=<?php echo $value['id']; ?>" class="btn btn-sm bg-primary">View</a>
+								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Pay Amount</a>
 								<!-- <a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a> -->
 								<a href="#delete_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-danger">Delete</a>
 							</td>
 						</tr>
+							
 
+						<!-- Edit Modal -->
+							<div class="modal fade" id="edit_modal<?php echo $value['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Update Due</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<form method="post" action="core/invoice-edit.php">
+											<div class="modal-body">
+												<div class="row">
+													<div class="col-12">
+														<input type="hidden" name="invoice_id" value="<?php echo $value['id']; ?>" required readonly>
+														
+														<div class="form-group">
+															<label for="pay" class="col-form-label">Amount:</label>
+															<input type="number" class="form-control" name="pay" value="<?php echo $value['pay']; ?>" placeholder="Enter  Amount (number)" required>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<div class="row justify-content-center w-100">
+													<div class="col-12 text-center">
+														<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Save Change</button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						
                         <?php }} ?>
 					</tbody>
 				</table>

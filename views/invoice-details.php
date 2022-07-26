@@ -98,10 +98,13 @@
 									if(isset($productsData)){
 										foreach ($productsData as $productInfo) {
 											if($product_id == $productInfo['id']){
+                                                $voucher_no = $productInfo['voucher_no'];
+                                                echo '<p title="Voucher No: '.$voucher_no.'">';
 												echo $productInfo['name'];
                                                 echo "<br>";
 												echo "Serial:" . $productInfo['product_details'] . ", " . "Warranty: " . $productInfo['warranty_days'] . " Days";
-												break;
+                                                echo "</p>";
+                                                break;
 											}
 										}
 									}
