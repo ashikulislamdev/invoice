@@ -94,7 +94,7 @@
                                                         <select class="form-control" name="cost_type" required>
 
                                                             <?php
-                                                                $cost_edit_id = $value['cost_edit_id'];
+                                                                $cost_edit_id = $value['id'];
                                                                 if(isset($costData)){
                                                                     foreach ($costData as $cost) {
                                                                         $cost_type_find = null;

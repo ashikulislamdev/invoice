@@ -106,3 +106,6 @@ ALTER TABLE `suppliers` CHANGE `contact_parson` `shop_name` VARCHAR(255) CHARACT
 
 # add new column in loan table
 ALTER TABLE `loan` ADD `type` VARCHAR(255) NOT NULL DEFAULT 'Loan' AFTER `note`;
+
+# add new column in invoice table
+ALTER TABLE `invoices` ADD `edit_discount` INT NOT NULL DEFAULT '0' AFTER `discount`;

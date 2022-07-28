@@ -1,5 +1,7 @@
 <?php
 
+    // Include Supplier API
+    include 'api/suppliers.php';
     // Import Product API
     include 'api/products.php';
 
@@ -99,7 +101,16 @@
 										foreach ($productsData as $productInfo) {
 											if($product_id == $productInfo['id']){
                                                 $voucher_no = $productInfo['voucher_no'];
-                                                echo '<p title="Voucher No: '.$voucher_no.'">';
+                                                $shop_name = '';
+                                                $supplier_view_id = $productInfo['supplier_id'];
+                                                if(isset($suppliersData)){
+                                                    foreach ($suppliersData as $supplierView) {
+                                                        if($supplier_view_id == $supplierView['id'] ){
+                                                            $shop_name = $supplierView['shop_name'];
+                                                        }
+                                                    }
+                                                }
+                                                echo '<p title="Shop Name: '.$shop_name.', Voucher No: '.$voucher_no.'">';
 												echo $productInfo['name'];
                                                 echo "<br>";
 												echo "Serial:" . $productInfo['product_details'] . ", " . "Warranty: " . $productInfo['warranty_days'] . " Days";
@@ -128,9 +139,9 @@
                     </div>
                     <div class="col-6">
                         <div class="text-right">
-                            <div class="mb-1">Sub - Total Amount: TK<?php echo $invoiceInfo['total'] ?></div>
-                            <div class="mb-1">Total Discount: TK<?php echo $invoiceInfo['discount'] ?></div>
                             <div class="mb-1">Grand Total: <strong>TK<?php echo $invoiceInfo['total'] + $invoiceInfo['discount'] ?></strong></div>
+                            <div class="mb-1">Total Discount: TK<?php echo $invoiceInfo['discount'] + $invoiceInfo['edit_discount'] ?></div>
+                            <div class="mb-1">Sub - Total Amount: TK<?php echo $invoiceInfo['total'] - $invoiceInfo['edit_discount'] ?></div>
                             <div class="mb-1">Paid Total: TK<?php echo $invoiceInfo['pay'] ?></div>
                             <div class="mb-1">Total Due: TK<?php echo $invoiceInfo['due'] ?></div>
                             <br><br><br>

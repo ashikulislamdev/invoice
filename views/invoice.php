@@ -11,8 +11,8 @@
 		<a class="btn btn-primary my-2 font-weight-bold px-4" style="border-radius: 0px;" href="new-invoice.php"> New Invoice</a>
 		<div class="card" style="border-radius: 0px;">
 			<h4 class="bg-primary p-3">Invoice List</h4>
-			<div class="px-2" style="overflow: auto;">
-				<table class="table table-striped table-hover text-center" style="min-width: 400px;">
+			<div class="px-2 table-responsive">
+				<table class="table table-striped table-hover text-center">
 					<thead>
 						<tr>
 							<th class="text-center">Invoice ID</th>
@@ -57,8 +57,6 @@
 							<td class="action-col">
 								<a href="invoice-details.php?invoice_id=<?php echo $value['id']; ?>" class="btn btn-sm bg-primary">View</a>
 								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Pay Amount</a>
-								<!-- <a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a> -->
-								<a href="#delete_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-danger">Delete</a>
 							</td>
 						</tr>
 							
@@ -80,8 +78,12 @@
 														<input type="hidden" name="invoice_id" value="<?php echo $value['id']; ?>" required readonly>
 														
 														<div class="form-group">
-															<label for="pay" class="col-form-label">Amount:</label>
+															<label for="pay" class="col-form-label">Pay Amount:</label>
 															<input type="number" class="form-control" name="pay" value="<?php echo $value['pay']; ?>" placeholder="Enter  Amount (number)" required>
+														</div>
+														<div class="form-group">
+															<label for="discount" class="col-form-label">Discount:</label>
+															<input type="number" class="form-control" name="discount" value="<?php echo $value['edit_discount']; ?>" placeholder="Enter Amount (number)" required>
 														</div>
 													</div>
 												</div>
