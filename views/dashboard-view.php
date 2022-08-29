@@ -104,6 +104,16 @@
 
     $LastMonthMainProfit = $getLastMonthPay - $getLastMonthSuppPrice - $getLastMonthWidrw - $lastMntTransportCost;
     
+
+    //summation of product stock
+    $productStockQty = mysqli_query($conn, "SELECT SUM(quantity) AS productStockQty FROM `products`");
+    $productStockQty = mysqli_fetch_assoc($productStockQty);
+    $productStockQty = $productStockQty['productStockQty'];
+
+    //summation of product stock
+    $productStockQtyPrice = mysqli_query($conn, "SELECT SUM(quantity * supplier_price) AS productStockQtyPrice FROM `products`");
+    $productStockQtyPrice = mysqli_fetch_assoc($productStockQtyPrice);
+    $productStockQtyPrice = $productStockQtyPrice['productStockQtyPrice'];
 ?>
 
 
@@ -161,6 +171,26 @@
                 <h6 class="m-b-20">Profit</h6>
                 <h2 class="text-right"><i class="bx bxl-product-hunt f-left"></i><span><?php echo $main_profit; ?></span></h2>
                 <p class="m-b-0">This Month<span class="f-right"><?php echo $LastMonthMainProfit; ?></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-warning order-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Product Stock</h6>
+                <h2 class="text-right"><i class="bx bx-cart-download f-left"></i><span><?php echo $productStockQty; ?></span></h2>
+                <p class="m-b-0">&nbsp;</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-info order-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Product Stock Price</h6>
+                <h2 class="text-right"><i class="bx bxl-shopify f-left"></i><span><?php echo $productStockQtyPrice; ?></span></h2>
+                <p class="m-b-0">&nbsp;</p>
             </div>
         </div>
     </div>
