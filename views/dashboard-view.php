@@ -126,7 +126,7 @@
     $getLastMonthDueInv = mysqli_query($conn, "SELECT SUM(due) AS lastMonthDue FROM `invoices` WHERE created > (NOW() - INTERVAL 1 MONTH)");
     $getLastMonthDueInvCount = mysqli_num_rows($getLastMonthDueInv);
     $getLastMonthDueInv = mysqli_fetch_assoc($getLastMonthDueInv);
-    $getLastMonthDueInv = $getLastMonthDueInv['lastMonthPay'];
+    $getLastMonthDueInv = $getLastMonthDueInv['lastMonthDue'];
 ?>
 
 
@@ -189,37 +189,42 @@
     </div>
 
     <div class="col-md-6 col-xl-3">
-<<<<<<< HEAD
-        <div class="card bg-c-green order-card">
-            <div class="card-block">
-                <h6 class="m-b-20">Due Invoice</h6>
-                <h2 class="text-right"><i class="bx bxl-product-hunt f-left"></i><span><?php echo $getSumDueInvCount; ?></span></h2>
-                <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthDueInvCount; ?></span></p>
-=======
         <div class="card bg-warning order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Product Stock</h6>
                 <h2 class="text-right"><i class="bx bx-cart-download f-left"></i><span><?php echo $productStockQty; ?></span></h2>
                 <p class="m-b-0">&nbsp;</p>
->>>>>>> e96df90ee5c759c71990b9ac2d0a9ccdae2a8a22
             </div>
         </div>
     </div>
 
     <div class="col-md-6 col-xl-3">
-<<<<<<< HEAD
         <div class="card bg-c-green order-card">
-            <div class="card-block">
-                <h6 class="m-b-20">Due Invoice Amount</h6>
-                <h2 class="text-right"><i class="bx bxl-product-hunt f-left"></i><span><?php echo $getSumDueInv; ?></span></h2>
-                <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthDueInv; ?></span></p>
-=======
-        <div class="card bg-info order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Product Stock Price</h6>
                 <h2 class="text-right"><i class="bx bxl-shopify f-left"></i><span><?php echo $productStockQtyPrice; ?></span></h2>
                 <p class="m-b-0">&nbsp;</p>
->>>>>>> e96df90ee5c759c71990b9ac2d0a9ccdae2a8a22
+            </div>
+        </div>
+    </div>
+    <!-- order-card end -->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-warning order-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Due Invoice</h6>
+                <h2 class="text-right"><i class="bx bx-cart-download f-left"></i><span><?php echo $getSumDueInvCount; ?></span></h2>
+                <p class="m-b-0">$getLastMonthDueInvCount;</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-green order-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Due Invoice Amount</h6>
+                <h2 class="text-right"><i class="bx bxl-shopify f-left"></i><span><?php echo $getSumDueInv; ?></span></h2>
+                <p class="m-b-0">&getLastMonthDueInv;</p>
             </div>
         </div>
     </div>
