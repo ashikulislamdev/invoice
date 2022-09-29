@@ -119,14 +119,15 @@
     // due invoices amount
     $getSumDueInvQry = "SELECT SUM(due) AS sumDue FROM `invoices` WHERE due > 0";
     $getSumDueInv = mysqli_query($conn, $getSumDueInvQry);
-    $getSumDueInvCount = mysqli_num_rows($getSumDueInv);
     $getSumDueInv = mysqli_fetch_assoc($getSumDueInv);
     $getSumDueInv = $getSumDueInv['sumDue'];
 
-    $getLastMonthDueInv = mysqli_query($conn, "SELECT SUM(due) AS lastMonthDue FROM `invoices` WHERE created > (NOW() - INTERVAL 1 MONTH)");
-    $getLastMonthDueInvCount = mysqli_num_rows($getLastMonthDueInv);
-    $getLastMonthDueInv = mysqli_fetch_assoc($getLastMonthDueInv);
-    $getLastMonthDueInv = $getLastMonthDueInv['lastMonthDue'];
+    // due invoices count
+    $getDueInvCountQry = "SELECT COUNT(id) AS dueInvCount FROM `invoices` WHERE due > 0";
+    $getDueInvCount = mysqli_query($conn, $getDueInvCountQry);
+    $getDueInvCount = mysqli_fetch_assoc($getDueInvCount);
+    $getDueInvCount = $getDueInvCount['dueInvCount'];
+
 ?>
 
 
@@ -213,8 +214,8 @@
         <div class="card bg-warning order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Due Invoice</h6>
-                <h2 class="text-right"><i class="bx bx-cart-download f-left"></i><span><?php echo $getSumDueInvCount; ?></span></h2>
-                <p class="m-b-0">$getLastMonthDueInvCount;</p>
+                <h2 class="text-right"><i class='bx bx-receipt f-left' ></i><span><?php echo $getDueInvCount; ?></span></h2>
+                <p class="m-b-0">&nbsp;</p>
             </div>
         </div>
     </div>
@@ -223,8 +224,8 @@
         <div class="card bg-c-green order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Due Invoice Amount</h6>
-                <h2 class="text-right"><i class="bx bxl-shopify f-left"></i><span><?php echo $getSumDueInv; ?></span></h2>
-                <p class="m-b-0">&getLastMonthDueInv;</p>
+                <h2 class="text-right"><i class='bx bx-signal-4 f-left' ></i><span><?php echo $getSumDueInv; ?></span></h2>
+                <p class="m-b-0">&nbsp;</p>
             </div>
         </div>
     </div>
