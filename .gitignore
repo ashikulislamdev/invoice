@@ -1,1 +1,3 @@
-# ignore ALL .log files
+/database/config.php
+*.zip
+*.rar

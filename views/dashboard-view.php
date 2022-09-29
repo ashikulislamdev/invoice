@@ -103,6 +103,18 @@
     $getLastMonthSuppPrice = $getLastMonthSuppPrice['sumSuppPrice'];
 
     $LastMonthMainProfit = $getLastMonthPay - $getLastMonthSuppPrice - $getLastMonthWidrw - $lastMntTransportCost;
+
+    // due invoices amount
+    $getSumDueInvQry = "SELECT SUM(due) AS sumDue FROM `invoices` WHERE due > 0";
+    $getSumDueInv = mysqli_query($conn, $getSumDueInvQry);
+    $getSumDueInvCount = mysqli_num_rows($getSumDueInv);
+    $getSumDueInv = mysqli_fetch_assoc($getSumDueInv);
+    $getSumDueInv = $getSumDueInv['sumDue'];
+
+    $getLastMonthDueInv = mysqli_query($conn, "SELECT SUM(due) AS lastMonthDue FROM `invoices` WHERE created > (NOW() - INTERVAL 1 MONTH)");
+    $getLastMonthDueInvCount = mysqli_num_rows($getLastMonthDueInv);
+    $getLastMonthDueInv = mysqli_fetch_assoc($getLastMonthDueInv);
+    $getLastMonthDueInv = $getLastMonthDueInv['lastMonthPay'];
     
 ?>
 
@@ -161,6 +173,26 @@
                 <h6 class="m-b-20">Profit</h6>
                 <h2 class="text-right"><i class="bx bxl-product-hunt f-left"></i><span><?php echo $main_profit; ?></span></h2>
                 <p class="m-b-0">This Month<span class="f-right"><?php echo $LastMonthMainProfit; ?></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-green order-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Due Invoice</h6>
+                <h2 class="text-right"><i class="bx bxl-product-hunt f-left"></i><span><?php echo $getSumDueInvCount; ?></span></h2>
+                <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthDueInvCount; ?></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-green order-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Due Invoice Amount</h6>
+                <h2 class="text-right"><i class="bx bxl-product-hunt f-left"></i><span><?php echo $getSumDueInv; ?></span></h2>
+                <p class="m-b-0">This Month<span class="f-right"><?php echo $getLastMonthDueInv; ?></span></p>
             </div>
         </div>
     </div>
