@@ -103,6 +103,18 @@
     $getLastMonthSuppPrice = $getLastMonthSuppPrice['sumSuppPrice'];
 
     $LastMonthMainProfit = $getLastMonthPay - $getLastMonthSuppPrice - $getLastMonthWidrw - $lastMntTransportCost;
+    
+
+    //summation of product stock
+    $productStockQty = mysqli_query($conn, "SELECT SUM(quantity) AS productStockQty FROM `products`");
+    $productStockQty = mysqli_fetch_assoc($productStockQty);
+    $productStockQty = $productStockQty['productStockQty'];
+
+    //summation of product stock
+    $productStockQtyPrice = mysqli_query($conn, "SELECT SUM(quantity * supplier_price) AS productStockQtyPrice FROM `products`");
+    $productStockQtyPrice = mysqli_fetch_assoc($productStockQtyPrice);
+    $productStockQtyPrice = $productStockQtyPrice['productStockQtyPrice'];
+
 
     // due invoices amount
     $getSumDueInvQry = "SELECT SUM(due) AS sumDue FROM `invoices` WHERE due > 0";
@@ -115,17 +127,6 @@
     $getLastMonthDueInvCount = mysqli_num_rows($getLastMonthDueInv);
     $getLastMonthDueInv = mysqli_fetch_assoc($getLastMonthDueInv);
     $getLastMonthDueInv = $getLastMonthDueInv['lastMonthPay'];
-    
-
-    //summation of product stock
-    $productStockQty = mysqli_query($conn, "SELECT SUM(quantity) AS productStockQty FROM `products`");
-    $productStockQty = mysqli_fetch_assoc($productStockQty);
-    $productStockQty = $productStockQty['productStockQty'];
-
-    //summation of product stock
-    $productStockQtyPrice = mysqli_query($conn, "SELECT SUM(quantity * supplier_price) AS productStockQtyPrice FROM `products`");
-    $productStockQtyPrice = mysqli_fetch_assoc($productStockQtyPrice);
-    $productStockQtyPrice = $productStockQtyPrice['productStockQtyPrice'];
 ?>
 
 
