@@ -109,3 +109,14 @@ ALTER TABLE `loan` ADD `type` VARCHAR(255) NOT NULL DEFAULT 'Loan' AFTER `note`;
 
 # add new column in invoice table
 ALTER TABLE `invoices` ADD `edit_discount` INT NOT NULL DEFAULT '0' AFTER `discount`;
+
+# add new column
+CREATE TABLE supplier_account(
+	id int AUTO_INCREMENT PRIMARY KEY,
+    buy_amount int(11),
+    pay_amount int(11),
+    voucher_no varchar(255),
+    details TEXT,
+    date date,
+    supplier_id int(11) NOT NULL
+);

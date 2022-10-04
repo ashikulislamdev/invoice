@@ -9,7 +9,7 @@
 		<div class="card" style="border-radius: 0px;">
 			<h4 class="bg-primary p-3">Supplier List</h4>
 			<div class="px-2" style="overflow: auto;">
-				<table class="table table-striped table-hover text-center" style="min-width: 400px;">
+				<table class="table table-striped table-hover" style="min-width: 400px;">
 					<thead>
 						<tr>
 							<th class="text-center">SL No</th>
@@ -29,10 +29,10 @@
 							<td><?php echo $value['supplier_name']; ?></td>
 							<td><?php echo $value['supplier_phone']; ?></td>
 							<td><?php echo $value['shop_name']; ?></td>
-							<td class="action-col">
-								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
-								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a>
-								<a href="#delete_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-danger">Delete</a>
+							<td>
+								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary"><i class='bx bx-show' ></i></a>
+								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success"><i class='bx bx-edit-alt'></i></a>
+								<a href="#delete_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-danger"><i class='bx bx-trash' ></i></a>
 							</td>
 						</tr>
 
@@ -55,8 +55,10 @@
                                         <hr>
                                         <p>Address: <b><?php echo $value['address']; ?></b></p>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <div class="modal-footer justify-content-center">
+                                        <a href="supplier-account.php?supplier_id=<?php echo $value['id']; ?>&action=buy" class="btn btn-primary">Buy</a>
+                                        <a href="supplier-account.php?supplier_id=<?php echo $value['id']; ?>&action=pay" class="btn btn-warning">Pay</a>
+                                        <a href="supplier-account.php?supplier_id=<?php echo $value['id']; ?>&action=details" class="btn btn-danger">Details</a>
                                     </div>
                                 </div>
                             </div>
