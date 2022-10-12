@@ -10,7 +10,7 @@
         $supplier_id = htmlentities(addslashes($_GET['supplier_id']));
     }
 
-    $supplierAccountSql = "SELECT * FROM `supplier_account` WHERE `supplier_id` = $supplier_id";
+    $supplierAccountSql = "SELECT * FROM `supplier_account` WHERE `supplier_id` = $supplier_id ORDER BY `id` ASC";
 
     $runSupplierAccountSql = mysqli_query($conn, $supplierAccountSql);
     $supplierAccountCount = mysqli_num_rows($runSupplierAccountSql);
