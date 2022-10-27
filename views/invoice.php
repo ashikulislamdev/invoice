@@ -12,7 +12,7 @@
 		<div class="card" style="border-radius: 0px;">
 			<h4 class="bg-primary p-3">Invoice List</h4>
 			<div class="px-2 table-responsive">
-				<table class="table table-striped table-hover text-center">
+				<table class="table table-striped table-hover text-center" id="dataTable">
 					<thead>
 						<tr>
 							<th class="text-center">Invoice ID</th>
@@ -24,7 +24,7 @@
 							<th class="text-center">Action</th>
 						</tr>
 					</thead>
-					<tbody id="dataTable">
+					<tbody>
                         <?php
                             if(isset($invoiceData) && (count($invoiceData) > 0)){
                                 foreach ($invoiceData as $key => $value) {

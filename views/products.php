@@ -11,7 +11,7 @@
 		<div class="card" style="border-radius: 0px;">
 			<h4 class="bg-primary p-3">Product List</h4>
 			<div class="px-2" style="overflow: auto;">
-				<table class="table table-striped table-hover text-center" style="min-width: 400px;">
+				<table class="table table-striped table-hover text-center" style="min-width: 400px;" id="dataTable">
 					<thead>
 						<tr>
 							<th class="text-center">SL No</th>

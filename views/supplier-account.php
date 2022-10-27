@@ -214,7 +214,7 @@
     <?php if($details){ ?>
     <div class="col-md-8 mx-auto">
         <div class="table-responsive" id="printSection">
-            <table class="table table-bordered text-center">
+            <table class="table table-bordered text-center" id="dataTable">
                 <thead>
                     <tr class="bg-primary text-white">
                         <th class="text-center">Date</th>
