@@ -56,7 +56,7 @@
 							<td><?php echo $value['total']; ?> TK</td>
 							<td><?php echo $value['due']; ?> TK</td>
 							<td><?php echo date('d M Y', strtotime($value['created'])) ?></td>
-							<td class="action-col">
+							<td>
 								<a href="invoice-details.php?invoice_id=<?php echo $value['id']; ?>" class="btn btn-sm bg-primary">View</a>
 								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Pay Amount</a>
 							</td>

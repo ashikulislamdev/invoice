@@ -31,7 +31,7 @@
 							<td><?php echo $value['amount']; ?> TK</td>
                             <td><?php echo $value['cost_type']; ?> </td>
 							<td><?php echo $value['cost_date']; ?></td>
-							<td class="action-col">
+							<td>
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
 								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a>
 								<a href="#delete_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-danger">Delete</a>

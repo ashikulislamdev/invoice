@@ -27,7 +27,7 @@
 							<td><?php echo ++$key; ?></td>
 							<td><?php echo $value['customer_name']; ?></td>
 							<td><?php echo $value['customer_phone']; ?></td>
-							<td class="action-col">
+							<td>
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
 								<a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Edit</a>
 								<a href="#delete_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-danger">Delete</a>

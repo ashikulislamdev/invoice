@@ -32,7 +32,7 @@
 							<td><?php echo $value['name']; ?></td>
 							<td><?php echo $value['quantity']; ?></td>
 							<td><?php echo  date("jS F, Y", strtotime($value['created'])); ?></td>
-							<td class="action-col">
+							<td>
 								<a href="#view_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-primary">View</a>
 								<button data-toggle="modal" data-target="#edit_modal<?php echo $value['id']; ?>" class="btn btn-sm bg-success" disabled>Edit</button>
 								<a href="#delete_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-danger">Delete</a>
