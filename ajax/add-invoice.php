@@ -3,6 +3,7 @@
     include 'session.php';
 
     if(isset($_POST['customer_id']) && isset($_POST['product_id']) && isset($_POST['product_quantity']) && isset($_POST['total_price']) && isset($_POST['invoice_date']) && isset($_POST['total_discount']) && isset($_POST['grand_total']) && isset($_POST['paid_amount']) && isset($_POST['due_amount'])){
+        $reference = trim(htmlentities(addslashes($_POST['reference'])));
         $customer_id = trim(htmlentities(addslashes($_POST['customer_id'])));
         $invoice_date = trim(htmlentities(addslashes($_POST['invoice_date'])));
         $total_discount = trim(htmlentities(addslashes($_POST['total_discount'])));
@@ -20,7 +21,7 @@
             }
 
 
-            $sql = "INSERT INTO `invoices` (`customer_id`, `discount`, `pay`, `due`, `total`, `total_supplier_price`, `created`) VALUES('$customer_id', '$total_discount', '$paid_amount', '$due_amount', '$grand_total', '$total_supplier_price', '$invoice_date')";
+            $sql = "INSERT INTO `invoices` (`reference`, `customer_id`, `discount`, `pay`, `due`, `total`, `total_supplier_price`, `created`) VALUES('$reference', '$customer_id', '$total_discount', '$paid_amount', '$due_amount', '$grand_total', '$total_supplier_price', '$invoice_date')";
             $runSql = mysqli_query($conn, $sql);
             if($runSql){
 

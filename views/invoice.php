@@ -17,6 +17,7 @@
 						<tr>
 							<th class="text-center">Invoice ID</th>
 							<th class="text-center">Customer Name</th>
+							<th class="text-center">Reference</th>
 							<th class="text-center">Amount</th>
 							<th class="text-center">Due</th>
 							<th class="text-center">Date</th>
@@ -51,6 +52,7 @@
 									}
 								?>
 							</td>
+							<td><?php echo $value['reference']; ?></td>
 							<td><?php echo $value['total']; ?> TK</td>
 							<td><?php echo $value['due']; ?> TK</td>
 							<td><?php echo date('d M Y', strtotime($value['created'])) ?></td>

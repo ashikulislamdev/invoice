@@ -53,6 +53,12 @@
                             <input type="date" class="form-control" autocomplete="off" required="" id="invoice_date" name="invoice_date" value="<?php echo date("Y-m-d") ?>" placeholder="yyyy-mm-dd">
                         </div>
                     </div>  
+                    <div class="form-group row">
+                        <label for="reference" class="col-sm-2 col-form-label">Reference</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" autocomplete="off" required="" id="reference" name="reference" placeholder="Reference">
+                        </div>
+                    </div>  
 
                     <div class="table-responsive" style="margin-top: 10px">
                         <table class="table table-bordered table-hover" id="normalInvoice">
