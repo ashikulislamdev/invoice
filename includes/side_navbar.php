@@ -70,6 +70,17 @@
                     <span class="pcoded-mtext">Cost</span>
                 </a>
             </li>
+            
+            <li class="<?php if($views == "report"){echo 'active';} ?>">
+                <a href="report.php">
+                    <span class="pcoded-micon"><i class="bx bxs-report text-20"></i><b>C</b></span>
+                    <span class="pcoded-mtext">Report</span>
+                </a>
+            </li>
+            
+            <!-- <li class="<?php// if($views == "report"){echo 'active';} ?>">
+                <a href="report.php" class="py-2 d-flex w-100"> <i class='bx bxs-report text-20'></i> &nbsp; Report </a>
+            </li> -->
         </ul>
     </div>
 </nav>

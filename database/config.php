@@ -5,7 +5,7 @@
 	$serverName = "localhost";
 	$userName = "root";
 	$password = "";
-	$dataBaseName ="cec_inventory";
+	$dataBaseName ="udduktainv";
 
 	$site_url = "http://localhost/php-projects/invoice/";
 

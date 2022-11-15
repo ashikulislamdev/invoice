@@ -106,6 +106,8 @@
                                                     include("views/invoice-details.php");
                                                 }else if($views == 'supplier-account'){
                                                     include("views/supplier-account.php");
+                                                }else if($views == 'report'){
+                                                    include("views/report.php");
                                                 }
                                             }                                        
                                         ?>
