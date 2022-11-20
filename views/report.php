@@ -6,21 +6,93 @@
 <div class="pb-2 text-center" id="message_section"></div>
 
 <div class="container">
-    <div class="card" style="border-radius: 0px;">
-        <div class="card-header bg-primary text-white">
-            <h4 class="m-0">See Report</h4>
+    
+    <?php
+        if(isset($_POST['customer_id'])){
+    ?>
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <a class="btn btn-primary my-2 font-weight-bold px-4" style="border-radius: 0px;" href="report.php"> Search Again </a>
+            <div class="card" style="border-radius: 0px;">
+                <h4 class="bg-primary p-3">Invoice Report History</h4>
+                <div class="px-2 table-responsive">
+                    <table class="table table-striped table-hover text-center" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Invoice ID</th>
+                                <th class="text-center">Reference</th>
+                                <th class="text-center">Pay</th>
+                                <th class="text-center">Due</th>
+                                <th class="text-center">Amount</th>
+                                <th class="text-center">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $customer_id = htmlentities(addslashes($_POST['customer_id']));
+                                $inv_sql = "SELECT * FROM `invoices` WHERE `customer_id` = '$customer_id' ORDER BY id DESC";
+                                $inv_result = mysqli_query($conn, $inv_sql);
+                                if(mysqli_num_rows($inv_result) > 0){
+                                    $total_pay = 0;
+                                    $total_due = 0;
+                                    $total_amount = 0;
+                                    while($inv_row = mysqli_fetch_assoc($inv_result)){
+                                        $total_pay += $inv_row['pay'];
+                                        $total_due += $inv_row['due'];
+                                        $total_amount += $inv_row['total'];
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php
+                                        echo "#" . $inv_row['id'];
+
+                                        if($inv_row['due'] > 0){
+                                            echo "<span style='display: none;'> due</span>";
+                                        }
+                                    ?>
+                                </td>
+                                <td><?php echo $inv_row['reference']; ?></td>
+                                <td><?php echo $inv_row['pay']; ?> TK</td>
+                                <td><?php echo $inv_row['due']; ?> TK</td>
+                                <td><?php echo $inv_row['total']; ?> TK</td>
+                                <td><?php echo date('d M Y', strtotime($inv_row['created'])) ?></td>
+                            </tr>
+                            <?php
+                                    }
+                                }else{
+                                    echo "<tr><td colspan='5'><b>No Data Found!</b></td></tr>";
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-2">
+                    <?php
+                        if(isset($total_pay) && isset($total_due) && isset($total_amount)){
+                            echo "<h6 class='text-right mb-1'>Total Pay: &nbsp; &nbsp; &nbsp; &nbsp;<b>$total_pay</b> TK</h6>";
+                            echo "<h6 class='text-right mb-1'>Total Due: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>$total_due</b> TK</h6>";
+                            echo "<h6 class='text-right mb-1'>Total Amount: <b>$total_amount</b> TK</h6>";
+                        }
+                    ?>
+                </div>
+            </div>
         </div>
-        <div class="card-body pt-4">
-            <form class="form-vertical" id="addInvoice" name="addInvoice" enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
+    </div>
+    <?php }else{ ?>
+    <div class="card mx-auto" style="width: 600px; max-width: 100%;">
+        <div class="card-header bg-primary text-white py-3">
+            <h4 class="m-0">Customer Report</h4>
+        </div>
+        <div class="card-body pt-4 pb-2">
+            <form action="" method="post">
                 <div class="panel-body">
                     <div class="row">
                         <div id="error"></div>     
                         
                         <div class="col-sm-12" id="customer_section_1">
                             <div class="form-group row">
-                                <label for="customer_name" class="col-md-2 col-form-label">Customers <i class="text-danger">*</i></label>
-                                <div class="col-md-3">
-                                    <select class="form-control select2" id="customer_id" onchange="Customer(this.value)" required>
+                                <div class="col-md-6">
+                                    <select class="form-control select2" name="customer_id" id="customer_id" onchange="Customer(this.value)" required>
                                         <option selected disabled>-- Select Customer --</option>
                                         <?php
                                             if(isset($customersData)){
@@ -30,131 +102,25 @@
                                             }
                                         ?>
                                     </select>
-
-                                    <input class="hidden_value" type="hidden" name="customer_id" id="InvCustomerId" require readonly>
-                                    <input class="hidden_value" type="hidden" name="customer_name" id="InvCustomerName" require readonly>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <input type="text" autocomplete="off" name="customer_phone" id="InvCustomerPhone" class=" form-control" placeholder="Customer Phone No" readonly>
                                 </div>
-                                <div class="col-sm-3">
-                                    <a href="customer.php" class="btn btn-success btn-sm">New Customer</a>
-                                </div>
-                                <div class="col-md-2"></div>
-                                <div class="col-md-9 pt-2">
+                                <div class="col-md-12 pt-2">
                                     <input type="text" name="customer_address" autocomplete="off" class=" form-control" placeholder="Customer Address" id="InvCustomerAddress" readonly>
                                 </div>
+
+                                <div class="col-md-12 pt-3">
+                                    <button class="btn btn-primary" type="submit">Search Report</button>
+                                </div>
                             </div>
-                        </div>
-                    </div> 
-
-                    <div class="card" style="border-radius: 0px;">
-                        <h4 class="bg-primary p-3">Invoice List</h4>
-                        <div class="px-2 table-responsive">
-                            <table class="table table-striped table-hover text-center">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Invoice ID</th>
-                                        <th class="text-center">Customer Name</th>
-                                        <th class="text-center">Reference</th>
-                                        <th class="text-center">Amount</th>
-                                        <th class="text-center">Due</th>
-                                        <th class="text-center">Date</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="dataTable">
-                                    <?php
-                                        if(isset($invoiceData) && (count($invoiceData) > 0)){
-                                            foreach ($invoiceData as $key => $value) {
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <?php
-                                                echo "#" . $value['invoice_id'];
-
-                                                if($value['due'] > 0){
-                                                    echo "<span style='display: none;'> due</span>";
-                                                }
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php
-                                                $customer_id = $value['customer_id'];
-                                                if(isset($customersData)){
-                                                    foreach ($customersData as $customerInfo) {
-                                                        if($customer_id == $customerInfo['id'] ){
-                                                            echo $customerInfo['customer_name'];
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            ?>
-                                        </td>
-                                        <td><?php echo $value['reference']; ?></td>
-                                        <td><?php echo $value['total']; ?> TK</td>
-                                        <td><?php echo $value['due']; ?> TK</td>
-                                        <td><?php echo date('d M Y', strtotime($value['created'])) ?></td>
-                                        <td>
-                                            <a href="invoice-details.php?invoice_id=<?php echo $value['id']; ?>" class="btn btn-sm bg-primary">View</a>
-                                            <a href="#edit_modal<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-sm bg-success">Pay Amount</a>
-                                        </td>
-                                    </tr>
-                                        
-
-                                    <!-- Edit Modal -->
-                                        <div class="modal fade" id="edit_modal<?php echo $value['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Update Due</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form method="post" action="core/invoice-edit.php">
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <input type="hidden" name="invoice_id" value="<?php echo $value['id']; ?>" required readonly>
-                                                                    
-                                                                    <div class="form-group">
-                                                                        <label for="pay" class="col-form-label">Pay Amount:</label>
-                                                                        <input type="number" class="form-control" name="pay" value="<?php echo $value['pay']; ?>" placeholder="Enter  Amount (number)" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="discount" class="col-form-label">Discount:</label>
-                                                                        <input type="number" class="form-control" name="discount" value="<?php echo $value['edit_discount']; ?>" placeholder="Enter Amount (number)" required>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <div class="row justify-content-center w-100">
-                                                                <div class="col-12 text-center">
-                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Save Change</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                    <?php
-                                            }
-                                        }else{
-                                            echo "<tr><td colspan='7' class='text-center text-danger'><h5>No Data Found..!</h5></td></tr>";
-                                        } 
-                                    ?>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+    <?php } ?>
+
 </div>
 
