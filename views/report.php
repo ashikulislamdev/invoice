@@ -69,8 +69,8 @@
                 <div class="p-2">
                     <?php
                         if(isset($total_pay) && isset($total_due) && isset($total_amount)){
-                            echo "<h6 class='text-right mb-1'>Total Pay: &nbsp; &nbsp; &nbsp; &nbsp;<b>$total_pay</b> TK</h6>";
-                            echo "<h6 class='text-right mb-1'>Total Due: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>$total_due</b> TK</h6>";
+                            echo "<h6 class='text-right mb-1'>Total Pay: <b>$total_pay</b> TK</h6>";
+                            echo "<h6 class='text-right mb-1'>Total Due: <b>$total_due</b> TK</h6>";
                             echo "<h6 class='text-right mb-1'>Total Amount: <b>$total_amount</b> TK</h6>";
                         }
                     ?>
