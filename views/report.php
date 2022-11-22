@@ -60,7 +60,7 @@
 
                                 </div>
                                 <?php 
-                                    if(isset($_POST['from_date']) && isset($_POST['to_date'])){
+                                    if($_POST['from_date'] != '' && $_POST['to_date'] != ''){
                                         ?>
                                             <p class="text-center">
                                                 Invoice Statement For The Period: <span class='font-weight-bold'><?php echo $_POST['from_date'] . " to " . $_POST['to_date'];  ?></span>
