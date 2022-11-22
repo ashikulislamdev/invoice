@@ -74,7 +74,13 @@
                                         <tbody>
                                             <?php
                                                 
-                                                $inv_sql = "SELECT * FROM `invoices` WHERE `customer_id` = '$customer_id' ORDER BY id DESC";
+                                                $inv_sql = "SELECT * FROM `invoices` WHERE `customer_id` = '$customer_id'";
+                                                if($_POST['from_date'] != '' && $_POST['to_date'] != ''){
+                                                    $from_date = date('Y-m-d', strtotime($_POST['from_date']));
+                                                    $to_date = date('Y-m-d', strtotime($_POST['to_date']));
+                                                    $inv_sql .= " AND `created` BETWEEN '$from_date' AND '$to_date'";
+                                                }
+                                                $inv_sql .= " ORDER BY `id` DESC";
                                                 $inv_result = mysqli_query($conn, $inv_sql);
                                                 if(mysqli_num_rows($inv_result) > 0){
                                                     $total_pay = 0;
@@ -138,7 +144,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 text-center">
+                <div class="col-12 text-center pb-3">
                     <button onclick="printSection()" class="btn btn-info btn-lg py-2" style="width: 150px;"><span class="btn-label"><i class="ti-printer"></i></span> Print Now</button>
                 </div>
 
@@ -175,6 +181,12 @@
                                 </div>
                                 <div class="col-md-12 pt-2">
                                     <input type="text" name="customer_address" autocomplete="off" class=" form-control" placeholder="Customer Address" id="InvCustomerAddress" readonly>
+                                </div>
+                                <div class="col-md-6 pt-2">
+                                    <input type="date" name="from_date" class=" form-control" placeholder="From Date">
+                                </div>
+                                <div class="col-md-6 pt-2">
+                                    <input type="date" name="to_date" class=" form-control" placeholder="To Date">
                                 </div>
 
                                 <div class="col-md-12 pt-3">
