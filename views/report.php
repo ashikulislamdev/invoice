@@ -103,10 +103,11 @@
                                             <tr>
                                                 <td>
                                                     <?php
-                                                        echo "#" . $inv_row['id'];
+                                                        $inv_id = $inv_row['id'];
+                                                        echo "<a href='invoice-details.php?invoice_id=" . $inv_id . "'>#" . $inv_row['id'];
 
                                                         if($inv_row['due'] > 0){
-                                                            echo "<span style='display: none;'> due</span>";
+                                                            echo "<span style='display: none;'> due</span></a>";
                                                         }
                                                     ?>
                                                 </td>
