@@ -108,6 +108,8 @@
                                                     include("views/supplier-account.php");
                                                 }else if($views == 'report'){
                                                     include("views/report.php");
+                                                }else if($views == 'product_return'){
+                                                    include("views/product_return.php");
                                                 }
                                             }                                        
                                         ?>

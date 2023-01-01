@@ -30,12 +30,14 @@
             }
         }
 
+        // check invoice exist or not
+        if(!isset($invoiceInfo)) echo '<script>alert("Invoice Not Found.", "warning");window.location.href = "invoice.php";</script>';
+
         $instituteSql = "SELECT * FROM `instituteinfo` WHERE `id` = '1'";
         $runInstituteSql = mysqli_query($conn, $instituteSql);
         if($runInstituteSql && mysqli_num_rows($runInstituteSql) == 1){
             $instituteinfo = mysqli_fetch_assoc($runInstituteSql);
         }
-
 
     }else{
         die("Oops, Sorry Something Wrong..!");
@@ -43,8 +45,8 @@
 ?>
 
 <?php if(isset($invoiceInfo)){ ?>
-<div id="printSection">
-    <div class="col-12 mx-auto" style="width: 800px;">
+<div id="printSection" style="overflow: auto;">
+    <div class="col-12 mx-auto pt-2" style="min-width: 1000px;">
         <div class="card p-0" style="border-radius: 0px;">
             <div class="card-header p-2 px-3" style="background-color: #c7c7c7; border-radius: 0px;">
                 <h5 class="float-left mb-0">Invoice <?php echo "#" . $invoiceInfo['id']; ?></h5>
@@ -81,10 +83,11 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 50px;">SL NO</th>
-                            <th class="text-center">Product</th>
+                            <th class="text-center" style="max-width: 100px;">Product</th>
                             <th class="text-center" style="width: 100px;">Quantity</th>
                             <th class="text-center">Rate</th>
                             <th class="text-center">Total</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,7 +97,7 @@
                                     ?>
                         <tr>
                             <td><?php echo ++$key; ?></td>
-                            <td class="text-left">
+                            <td class="text-left" style="white-space: revert;">
                                 <?php
                                     $product_id = $value['product_id'];
 									if(isset($productsData)){
@@ -110,7 +113,7 @@
                                                         }
                                                     }
                                                 }
-                                                echo '<p title="Shop Name: '.$shop_name.', Voucher No: '.$voucher_no.'">';
+                                                echo '<p class="mb-0" title="Shop Name: '.$shop_name.', Voucher No: '.$voucher_no.'">';
 												echo $productInfo['name'];
                                                 echo "<br>";
 												echo "Serial:" . $productInfo['product_details'] . ", " . "Warranty: " . $productInfo['warranty_days'] . " Days";
@@ -124,11 +127,18 @@
                             <td><?php echo $value['quantity']; ?></td>
                             <td>TK <?php echo round(($value['total'] / $value['quantity']), 2); ?></td>
                             <td>TK <?php echo round($value['total'], 2) ?></td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"
+                                onclick="
+                                if(confirm('Do you really want to remove this product from this invoice?')){
+                                    window.location.href = 'core/product_return_delete.php?invoice_id=<?php echo $invoice_id; ?>&product_id=<?php echo $productInfo['id']; ?>&invoice_item_id=<?php echo $value['id']; ?>';
+                                }"><span class="bx bx-trash"></span></a>                                
+                            </td>
                         </tr>	
                         <?php
                                 }
                             }else{
-                                echo "<tr><td colspan='5'><h5 class='text-center text-danger'>No Item Found..!</h5></td><tr>";
+                                echo "<tr><td colspan='6'><h5 class='text-center text-danger'>No Item Found..!</h5></td><tr>";
                             }
                         ?>                                                                      
                     </tbody>
@@ -156,26 +166,4 @@
         </div>
     </div>
 </div>
-<div class="col-12 text-center">
-    <button onclick="printSection()" class="btn btn-info btn-lg py-2 mt-2" style="width: 150px;"><span class="btn-label"><i class="ti-printer"></i></span> Print Now</button>
-    <a href="product_return.php?invoice_id=<?php echo $invoice_id; ?>" class="btn btn-info btn-lg py-2 mt-2"><span class="btn-label"><i class="bx bx-money text-20"></i></span> Product Return</a>
-</div>
 <?php } ?>
-
-
-
-
-<script>
-	function printSection() {
-		var divContents = document.getElementById("printSection").innerHTML;
-		var a = window.open('', '', 'height=1000px, width=1000px');
-		a.document.write('<html><head>');
-		a.document.write("<meta name='author' content='codedthemes'><link rel='icon' href='assets/images/favicon.ico' type='image/x-icon'><link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet'><link rel='stylesheet' type='text/css' href='assets/css/bootstrap/css/bootstrap.min.css'><link rel='stylesheet' type='text/css' href='assets/icon/themify-icons/themify-icons.css'><link rel='stylesheet' type='text/css' href='assets/icon/font-awesome/css/font-awesome.min.css'><link rel='stylesheet' type='text/css' href='assets/icon/icofont/css/icofont.css'><link rel='stylesheet' type='text/css' href='assets/css/style.css'><link rel='stylesheet' type='text/css' href='assets/css/jquery.mCustomScrollbar.css'>");
-		a.document.write("<style>.pcoded-main-container{background: white;} body{background-color: white;}</style>");
-		a.document.write('</head><body>');
-		a.document.write(divContents);
-		a.document.write('</body></html>');
-		a.document.close();
-		a.print();
-	}
-</script>

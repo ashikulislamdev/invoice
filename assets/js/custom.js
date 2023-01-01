@@ -23,7 +23,7 @@ function Customer(id){
 
 
 // Add New Table Row in Invoice Table
-var rowCount = 1;
+var rowCount = 0;
 
 function addNewRow(e){
     rowCount = rowCount + 1;
